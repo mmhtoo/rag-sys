@@ -117,9 +117,28 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.TestingScalarFieldEnum = {
+exports.Prisma.DirectoryScalarFieldEnum = {
   id: 'id',
-  message: 'message'
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  parentDirId: 'parentDirId',
+  createdBy: 'createdBy',
+  updatedBy: 'updatedBy'
+};
+
+exports.Prisma.FileScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  resourcePath: 'resourcePath',
+  size: 'size',
+  contentType: 'contentType',
+  metadata: 'metadata',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  parentDirId: 'parentDirId',
+  createdBy: 'createdBy',
+  updatedBy: 'updatedBy'
 };
 
 exports.Prisma.SortOrder = {
@@ -127,14 +146,30 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
+};
+
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
+
 
 exports.Prisma.ModelName = {
-  Testing: 'Testing'
+  Directory: 'Directory',
+  File: 'File'
 };
 
 /**

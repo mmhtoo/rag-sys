@@ -14,10 +14,15 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
- * Model Testing
+ * Model Directory
  * 
  */
-export type Testing = $Result.DefaultSelection<Prisma.$TestingPayload>
+export type Directory = $Result.DefaultSelection<Prisma.$DirectoryPayload>
+/**
+ * Model File
+ * 
+ */
+export type File = $Result.DefaultSelection<Prisma.$FilePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -26,8 +31,8 @@ export type Testing = $Result.DefaultSelection<Prisma.$TestingPayload>
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Testings
- * const testings = await prisma.testing.findMany()
+ * // Fetch zero or more Directories
+ * const directories = await prisma.directory.findMany()
  * ```
  *
  *
@@ -47,8 +52,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Testings
-   * const testings = await prisma.testing.findMany()
+   * // Fetch zero or more Directories
+   * const directories = await prisma.directory.findMany()
    * ```
    *
    *
@@ -145,14 +150,24 @@ export class PrismaClient<
   }>>
 
       /**
-   * `prisma.testing`: Exposes CRUD operations for the **Testing** model.
+   * `prisma.directory`: Exposes CRUD operations for the **Directory** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Testings
-    * const testings = await prisma.testing.findMany()
+    * // Fetch zero or more Directories
+    * const directories = await prisma.directory.findMany()
     * ```
     */
-  get testing(): Prisma.TestingDelegate<ExtArgs, ClientOptions>;
+  get directory(): Prisma.DirectoryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.file`: Exposes CRUD operations for the **File** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Files
+    * const files = await prisma.file.findMany()
+    * ```
+    */
+  get file(): Prisma.FileDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -593,7 +608,8 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    Testing: 'Testing'
+    Directory: 'Directory',
+    File: 'File'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -612,81 +628,155 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "testing"
+      modelProps: "directory" | "file"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
-      Testing: {
-        payload: Prisma.$TestingPayload<ExtArgs>
-        fields: Prisma.TestingFieldRefs
+      Directory: {
+        payload: Prisma.$DirectoryPayload<ExtArgs>
+        fields: Prisma.DirectoryFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.TestingFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TestingPayload> | null
+            args: Prisma.DirectoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DirectoryPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.TestingFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TestingPayload>
+            args: Prisma.DirectoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DirectoryPayload>
           }
           findFirst: {
-            args: Prisma.TestingFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TestingPayload> | null
+            args: Prisma.DirectoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DirectoryPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.TestingFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TestingPayload>
+            args: Prisma.DirectoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DirectoryPayload>
           }
           findMany: {
-            args: Prisma.TestingFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TestingPayload>[]
+            args: Prisma.DirectoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DirectoryPayload>[]
           }
           create: {
-            args: Prisma.TestingCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TestingPayload>
+            args: Prisma.DirectoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DirectoryPayload>
           }
           createMany: {
-            args: Prisma.TestingCreateManyArgs<ExtArgs>
+            args: Prisma.DirectoryCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.TestingCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TestingPayload>[]
+            args: Prisma.DirectoryCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DirectoryPayload>[]
           }
           delete: {
-            args: Prisma.TestingDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TestingPayload>
+            args: Prisma.DirectoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DirectoryPayload>
           }
           update: {
-            args: Prisma.TestingUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TestingPayload>
+            args: Prisma.DirectoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DirectoryPayload>
           }
           deleteMany: {
-            args: Prisma.TestingDeleteManyArgs<ExtArgs>
+            args: Prisma.DirectoryDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.TestingUpdateManyArgs<ExtArgs>
+            args: Prisma.DirectoryUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.TestingUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TestingPayload>[]
+            args: Prisma.DirectoryUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DirectoryPayload>[]
           }
           upsert: {
-            args: Prisma.TestingUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TestingPayload>
+            args: Prisma.DirectoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DirectoryPayload>
           }
           aggregate: {
-            args: Prisma.TestingAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateTesting>
+            args: Prisma.DirectoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDirectory>
           }
           groupBy: {
-            args: Prisma.TestingGroupByArgs<ExtArgs>
-            result: $Utils.Optional<TestingGroupByOutputType>[]
+            args: Prisma.DirectoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DirectoryGroupByOutputType>[]
           }
           count: {
-            args: Prisma.TestingCountArgs<ExtArgs>
-            result: $Utils.Optional<TestingCountAggregateOutputType> | number
+            args: Prisma.DirectoryCountArgs<ExtArgs>
+            result: $Utils.Optional<DirectoryCountAggregateOutputType> | number
+          }
+        }
+      }
+      File: {
+        payload: Prisma.$FilePayload<ExtArgs>
+        fields: Prisma.FileFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FileFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FileFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilePayload>
+          }
+          findFirst: {
+            args: Prisma.FileFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FileFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilePayload>
+          }
+          findMany: {
+            args: Prisma.FileFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilePayload>[]
+          }
+          create: {
+            args: Prisma.FileCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilePayload>
+          }
+          createMany: {
+            args: Prisma.FileCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FileCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilePayload>[]
+          }
+          delete: {
+            args: Prisma.FileDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilePayload>
+          }
+          update: {
+            args: Prisma.FileUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilePayload>
+          }
+          deleteMany: {
+            args: Prisma.FileDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FileUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FileUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilePayload>[]
+          }
+          upsert: {
+            args: Prisma.FileUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FilePayload>
+          }
+          aggregate: {
+            args: Prisma.FileAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFile>
+          }
+          groupBy: {
+            args: Prisma.FileGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FileGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FileCountArgs<ExtArgs>
+            result: $Utils.Optional<FileCountAggregateOutputType> | number
           }
         }
       }
@@ -774,7 +864,8 @@ export namespace Prisma {
     omit?: Prisma.GlobalOmitConfig
   }
   export type GlobalOmitConfig = {
-    testing?: TestingOmit
+    directory?: DirectoryOmit
+    file?: FileOmit
   }
 
   /* Types for Logging */
@@ -864,340 +955,427 @@ export namespace Prisma {
    */
 
 
+  /**
+   * Count Type DirectoryCountOutputType
+   */
+
+  export type DirectoryCountOutputType = {
+    childDirs: number
+    childFiles: number
+  }
+
+  export type DirectoryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    childDirs?: boolean | DirectoryCountOutputTypeCountChildDirsArgs
+    childFiles?: boolean | DirectoryCountOutputTypeCountChildFilesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * DirectoryCountOutputType without action
+   */
+  export type DirectoryCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DirectoryCountOutputType
+     */
+    select?: DirectoryCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * DirectoryCountOutputType without action
+   */
+  export type DirectoryCountOutputTypeCountChildDirsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DirectoryWhereInput
+  }
+
+  /**
+   * DirectoryCountOutputType without action
+   */
+  export type DirectoryCountOutputTypeCountChildFilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FileWhereInput
+  }
+
 
   /**
    * Models
    */
 
   /**
-   * Model Testing
+   * Model Directory
    */
 
-  export type AggregateTesting = {
-    _count: TestingCountAggregateOutputType | null
-    _avg: TestingAvgAggregateOutputType | null
-    _sum: TestingSumAggregateOutputType | null
-    _min: TestingMinAggregateOutputType | null
-    _max: TestingMaxAggregateOutputType | null
+  export type AggregateDirectory = {
+    _count: DirectoryCountAggregateOutputType | null
+    _min: DirectoryMinAggregateOutputType | null
+    _max: DirectoryMaxAggregateOutputType | null
   }
 
-  export type TestingAvgAggregateOutputType = {
-    id: number | null
+  export type DirectoryMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    parentDirId: string | null
+    createdBy: string | null
+    updatedBy: string | null
   }
 
-  export type TestingSumAggregateOutputType = {
-    id: number | null
+  export type DirectoryMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    parentDirId: string | null
+    createdBy: string | null
+    updatedBy: string | null
   }
 
-  export type TestingMinAggregateOutputType = {
-    id: number | null
-    message: string | null
-  }
-
-  export type TestingMaxAggregateOutputType = {
-    id: number | null
-    message: string | null
-  }
-
-  export type TestingCountAggregateOutputType = {
+  export type DirectoryCountAggregateOutputType = {
     id: number
-    message: number
+    name: number
+    createdAt: number
+    updatedAt: number
+    parentDirId: number
+    createdBy: number
+    updatedBy: number
     _all: number
   }
 
 
-  export type TestingAvgAggregateInputType = {
+  export type DirectoryMinAggregateInputType = {
     id?: true
+    name?: true
+    createdAt?: true
+    updatedAt?: true
+    parentDirId?: true
+    createdBy?: true
+    updatedBy?: true
   }
 
-  export type TestingSumAggregateInputType = {
+  export type DirectoryMaxAggregateInputType = {
     id?: true
+    name?: true
+    createdAt?: true
+    updatedAt?: true
+    parentDirId?: true
+    createdBy?: true
+    updatedBy?: true
   }
 
-  export type TestingMinAggregateInputType = {
+  export type DirectoryCountAggregateInputType = {
     id?: true
-    message?: true
-  }
-
-  export type TestingMaxAggregateInputType = {
-    id?: true
-    message?: true
-  }
-
-  export type TestingCountAggregateInputType = {
-    id?: true
-    message?: true
+    name?: true
+    createdAt?: true
+    updatedAt?: true
+    parentDirId?: true
+    createdBy?: true
+    updatedBy?: true
     _all?: true
   }
 
-  export type TestingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DirectoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Testing to aggregate.
+     * Filter which Directory to aggregate.
      */
-    where?: TestingWhereInput
+    where?: DirectoryWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Testings to fetch.
+     * Determine the order of Directories to fetch.
      */
-    orderBy?: TestingOrderByWithRelationInput | TestingOrderByWithRelationInput[]
+    orderBy?: DirectoryOrderByWithRelationInput | DirectoryOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: TestingWhereUniqueInput
+    cursor?: DirectoryWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Testings from the position of the cursor.
+     * Take `±n` Directories from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Testings.
+     * Skip the first `n` Directories.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Testings
+     * Count returned Directories
     **/
-    _count?: true | TestingCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: TestingAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: TestingSumAggregateInputType
+    _count?: true | DirectoryCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: TestingMinAggregateInputType
+    _min?: DirectoryMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: TestingMaxAggregateInputType
+    _max?: DirectoryMaxAggregateInputType
   }
 
-  export type GetTestingAggregateType<T extends TestingAggregateArgs> = {
-        [P in keyof T & keyof AggregateTesting]: P extends '_count' | 'count'
+  export type GetDirectoryAggregateType<T extends DirectoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateDirectory]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateTesting[P]>
-      : GetScalarType<T[P], AggregateTesting[P]>
+        : GetScalarType<T[P], AggregateDirectory[P]>
+      : GetScalarType<T[P], AggregateDirectory[P]>
   }
 
 
 
 
-  export type TestingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TestingWhereInput
-    orderBy?: TestingOrderByWithAggregationInput | TestingOrderByWithAggregationInput[]
-    by: TestingScalarFieldEnum[] | TestingScalarFieldEnum
-    having?: TestingScalarWhereWithAggregatesInput
+  export type DirectoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DirectoryWhereInput
+    orderBy?: DirectoryOrderByWithAggregationInput | DirectoryOrderByWithAggregationInput[]
+    by: DirectoryScalarFieldEnum[] | DirectoryScalarFieldEnum
+    having?: DirectoryScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: TestingCountAggregateInputType | true
-    _avg?: TestingAvgAggregateInputType
-    _sum?: TestingSumAggregateInputType
-    _min?: TestingMinAggregateInputType
-    _max?: TestingMaxAggregateInputType
+    _count?: DirectoryCountAggregateInputType | true
+    _min?: DirectoryMinAggregateInputType
+    _max?: DirectoryMaxAggregateInputType
   }
 
-  export type TestingGroupByOutputType = {
-    id: number
-    message: string
-    _count: TestingCountAggregateOutputType | null
-    _avg: TestingAvgAggregateOutputType | null
-    _sum: TestingSumAggregateOutputType | null
-    _min: TestingMinAggregateOutputType | null
-    _max: TestingMaxAggregateOutputType | null
+  export type DirectoryGroupByOutputType = {
+    id: string
+    name: string
+    createdAt: Date
+    updatedAt: Date
+    parentDirId: string | null
+    createdBy: string
+    updatedBy: string
+    _count: DirectoryCountAggregateOutputType | null
+    _min: DirectoryMinAggregateOutputType | null
+    _max: DirectoryMaxAggregateOutputType | null
   }
 
-  type GetTestingGroupByPayload<T extends TestingGroupByArgs> = Prisma.PrismaPromise<
+  type GetDirectoryGroupByPayload<T extends DirectoryGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<TestingGroupByOutputType, T['by']> &
+      PickEnumerable<DirectoryGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof TestingGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof DirectoryGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], TestingGroupByOutputType[P]>
-            : GetScalarType<T[P], TestingGroupByOutputType[P]>
+              : GetScalarType<T[P], DirectoryGroupByOutputType[P]>
+            : GetScalarType<T[P], DirectoryGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type TestingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type DirectorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    message?: boolean
-  }, ExtArgs["result"]["testing"]>
+    name?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    parentDirId?: boolean
+    createdBy?: boolean
+    updatedBy?: boolean
+    parentDir?: boolean | Directory$parentDirArgs<ExtArgs>
+    childDirs?: boolean | Directory$childDirsArgs<ExtArgs>
+    childFiles?: boolean | Directory$childFilesArgs<ExtArgs>
+    _count?: boolean | DirectoryCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["directory"]>
 
-  export type TestingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type DirectorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    message?: boolean
-  }, ExtArgs["result"]["testing"]>
+    name?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    parentDirId?: boolean
+    createdBy?: boolean
+    updatedBy?: boolean
+    parentDir?: boolean | Directory$parentDirArgs<ExtArgs>
+  }, ExtArgs["result"]["directory"]>
 
-  export type TestingSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type DirectorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    message?: boolean
-  }, ExtArgs["result"]["testing"]>
+    name?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    parentDirId?: boolean
+    createdBy?: boolean
+    updatedBy?: boolean
+    parentDir?: boolean | Directory$parentDirArgs<ExtArgs>
+  }, ExtArgs["result"]["directory"]>
 
-  export type TestingSelectScalar = {
+  export type DirectorySelectScalar = {
     id?: boolean
-    message?: boolean
+    name?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    parentDirId?: boolean
+    createdBy?: boolean
+    updatedBy?: boolean
   }
 
-  export type TestingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "message", ExtArgs["result"]["testing"]>
+  export type DirectoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "createdAt" | "updatedAt" | "parentDirId" | "createdBy" | "updatedBy", ExtArgs["result"]["directory"]>
+  export type DirectoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    parentDir?: boolean | Directory$parentDirArgs<ExtArgs>
+    childDirs?: boolean | Directory$childDirsArgs<ExtArgs>
+    childFiles?: boolean | Directory$childFilesArgs<ExtArgs>
+    _count?: boolean | DirectoryCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type DirectoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    parentDir?: boolean | Directory$parentDirArgs<ExtArgs>
+  }
+  export type DirectoryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    parentDir?: boolean | Directory$parentDirArgs<ExtArgs>
+  }
 
-  export type $TestingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Testing"
-    objects: {}
+  export type $DirectoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Directory"
+    objects: {
+      parentDir: Prisma.$DirectoryPayload<ExtArgs> | null
+      childDirs: Prisma.$DirectoryPayload<ExtArgs>[]
+      childFiles: Prisma.$FilePayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
-      message: string
-    }, ExtArgs["result"]["testing"]>
+      id: string
+      name: string
+      createdAt: Date
+      updatedAt: Date
+      parentDirId: string | null
+      createdBy: string
+      updatedBy: string
+    }, ExtArgs["result"]["directory"]>
     composites: {}
   }
 
-  type TestingGetPayload<S extends boolean | null | undefined | TestingDefaultArgs> = $Result.GetResult<Prisma.$TestingPayload, S>
+  type DirectoryGetPayload<S extends boolean | null | undefined | DirectoryDefaultArgs> = $Result.GetResult<Prisma.$DirectoryPayload, S>
 
-  type TestingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<TestingFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: TestingCountAggregateInputType | true
+  type DirectoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DirectoryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DirectoryCountAggregateInputType | true
     }
 
-  export interface TestingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Testing'], meta: { name: 'Testing' } }
+  export interface DirectoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Directory'], meta: { name: 'Directory' } }
     /**
-     * Find zero or one Testing that matches the filter.
-     * @param {TestingFindUniqueArgs} args - Arguments to find a Testing
+     * Find zero or one Directory that matches the filter.
+     * @param {DirectoryFindUniqueArgs} args - Arguments to find a Directory
      * @example
-     * // Get one Testing
-     * const testing = await prisma.testing.findUnique({
+     * // Get one Directory
+     * const directory = await prisma.directory.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends TestingFindUniqueArgs>(args: SelectSubset<T, TestingFindUniqueArgs<ExtArgs>>): Prisma__TestingClient<$Result.GetResult<Prisma.$TestingPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends DirectoryFindUniqueArgs>(args: SelectSubset<T, DirectoryFindUniqueArgs<ExtArgs>>): Prisma__DirectoryClient<$Result.GetResult<Prisma.$DirectoryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Testing that matches the filter or throw an error with `error.code='P2025'`
+     * Find one Directory that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {TestingFindUniqueOrThrowArgs} args - Arguments to find a Testing
+     * @param {DirectoryFindUniqueOrThrowArgs} args - Arguments to find a Directory
      * @example
-     * // Get one Testing
-     * const testing = await prisma.testing.findUniqueOrThrow({
+     * // Get one Directory
+     * const directory = await prisma.directory.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends TestingFindUniqueOrThrowArgs>(args: SelectSubset<T, TestingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TestingClient<$Result.GetResult<Prisma.$TestingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends DirectoryFindUniqueOrThrowArgs>(args: SelectSubset<T, DirectoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DirectoryClient<$Result.GetResult<Prisma.$DirectoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Testing that matches the filter.
+     * Find the first Directory that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TestingFindFirstArgs} args - Arguments to find a Testing
+     * @param {DirectoryFindFirstArgs} args - Arguments to find a Directory
      * @example
-     * // Get one Testing
-     * const testing = await prisma.testing.findFirst({
+     * // Get one Directory
+     * const directory = await prisma.directory.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends TestingFindFirstArgs>(args?: SelectSubset<T, TestingFindFirstArgs<ExtArgs>>): Prisma__TestingClient<$Result.GetResult<Prisma.$TestingPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends DirectoryFindFirstArgs>(args?: SelectSubset<T, DirectoryFindFirstArgs<ExtArgs>>): Prisma__DirectoryClient<$Result.GetResult<Prisma.$DirectoryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Testing that matches the filter or
+     * Find the first Directory that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TestingFindFirstOrThrowArgs} args - Arguments to find a Testing
+     * @param {DirectoryFindFirstOrThrowArgs} args - Arguments to find a Directory
      * @example
-     * // Get one Testing
-     * const testing = await prisma.testing.findFirstOrThrow({
+     * // Get one Directory
+     * const directory = await prisma.directory.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends TestingFindFirstOrThrowArgs>(args?: SelectSubset<T, TestingFindFirstOrThrowArgs<ExtArgs>>): Prisma__TestingClient<$Result.GetResult<Prisma.$TestingPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends DirectoryFindFirstOrThrowArgs>(args?: SelectSubset<T, DirectoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__DirectoryClient<$Result.GetResult<Prisma.$DirectoryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Testings that matches the filter.
+     * Find zero or more Directories that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TestingFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {DirectoryFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Testings
-     * const testings = await prisma.testing.findMany()
+     * // Get all Directories
+     * const directories = await prisma.directory.findMany()
      * 
-     * // Get first 10 Testings
-     * const testings = await prisma.testing.findMany({ take: 10 })
+     * // Get first 10 Directories
+     * const directories = await prisma.directory.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const testingWithIdOnly = await prisma.testing.findMany({ select: { id: true } })
+     * const directoryWithIdOnly = await prisma.directory.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends TestingFindManyArgs>(args?: SelectSubset<T, TestingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TestingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends DirectoryFindManyArgs>(args?: SelectSubset<T, DirectoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DirectoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Testing.
-     * @param {TestingCreateArgs} args - Arguments to create a Testing.
+     * Create a Directory.
+     * @param {DirectoryCreateArgs} args - Arguments to create a Directory.
      * @example
-     * // Create one Testing
-     * const Testing = await prisma.testing.create({
+     * // Create one Directory
+     * const Directory = await prisma.directory.create({
      *   data: {
-     *     // ... data to create a Testing
+     *     // ... data to create a Directory
      *   }
      * })
      * 
      */
-    create<T extends TestingCreateArgs>(args: SelectSubset<T, TestingCreateArgs<ExtArgs>>): Prisma__TestingClient<$Result.GetResult<Prisma.$TestingPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends DirectoryCreateArgs>(args: SelectSubset<T, DirectoryCreateArgs<ExtArgs>>): Prisma__DirectoryClient<$Result.GetResult<Prisma.$DirectoryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Testings.
-     * @param {TestingCreateManyArgs} args - Arguments to create many Testings.
+     * Create many Directories.
+     * @param {DirectoryCreateManyArgs} args - Arguments to create many Directories.
      * @example
-     * // Create many Testings
-     * const testing = await prisma.testing.createMany({
+     * // Create many Directories
+     * const directory = await prisma.directory.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends TestingCreateManyArgs>(args?: SelectSubset<T, TestingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends DirectoryCreateManyArgs>(args?: SelectSubset<T, DirectoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Testings and returns the data saved in the database.
-     * @param {TestingCreateManyAndReturnArgs} args - Arguments to create many Testings.
+     * Create many Directories and returns the data saved in the database.
+     * @param {DirectoryCreateManyAndReturnArgs} args - Arguments to create many Directories.
      * @example
-     * // Create many Testings
-     * const testing = await prisma.testing.createManyAndReturn({
+     * // Create many Directories
+     * const directory = await prisma.directory.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Testings and only return the `id`
-     * const testingWithIdOnly = await prisma.testing.createManyAndReturn({
+     * // Create many Directories and only return the `id`
+     * const directoryWithIdOnly = await prisma.directory.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -1207,28 +1385,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends TestingCreateManyAndReturnArgs>(args?: SelectSubset<T, TestingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TestingPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends DirectoryCreateManyAndReturnArgs>(args?: SelectSubset<T, DirectoryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DirectoryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Testing.
-     * @param {TestingDeleteArgs} args - Arguments to delete one Testing.
+     * Delete a Directory.
+     * @param {DirectoryDeleteArgs} args - Arguments to delete one Directory.
      * @example
-     * // Delete one Testing
-     * const Testing = await prisma.testing.delete({
+     * // Delete one Directory
+     * const Directory = await prisma.directory.delete({
      *   where: {
-     *     // ... filter to delete one Testing
+     *     // ... filter to delete one Directory
      *   }
      * })
      * 
      */
-    delete<T extends TestingDeleteArgs>(args: SelectSubset<T, TestingDeleteArgs<ExtArgs>>): Prisma__TestingClient<$Result.GetResult<Prisma.$TestingPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends DirectoryDeleteArgs>(args: SelectSubset<T, DirectoryDeleteArgs<ExtArgs>>): Prisma__DirectoryClient<$Result.GetResult<Prisma.$DirectoryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Testing.
-     * @param {TestingUpdateArgs} args - Arguments to update one Testing.
+     * Update one Directory.
+     * @param {DirectoryUpdateArgs} args - Arguments to update one Directory.
      * @example
-     * // Update one Testing
-     * const testing = await prisma.testing.update({
+     * // Update one Directory
+     * const directory = await prisma.directory.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1238,30 +1416,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends TestingUpdateArgs>(args: SelectSubset<T, TestingUpdateArgs<ExtArgs>>): Prisma__TestingClient<$Result.GetResult<Prisma.$TestingPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends DirectoryUpdateArgs>(args: SelectSubset<T, DirectoryUpdateArgs<ExtArgs>>): Prisma__DirectoryClient<$Result.GetResult<Prisma.$DirectoryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Testings.
-     * @param {TestingDeleteManyArgs} args - Arguments to filter Testings to delete.
+     * Delete zero or more Directories.
+     * @param {DirectoryDeleteManyArgs} args - Arguments to filter Directories to delete.
      * @example
-     * // Delete a few Testings
-     * const { count } = await prisma.testing.deleteMany({
+     * // Delete a few Directories
+     * const { count } = await prisma.directory.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends TestingDeleteManyArgs>(args?: SelectSubset<T, TestingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends DirectoryDeleteManyArgs>(args?: SelectSubset<T, DirectoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Testings.
+     * Update zero or more Directories.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TestingUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {DirectoryUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Testings
-     * const testing = await prisma.testing.updateMany({
+     * // Update many Directories
+     * const directory = await prisma.directory.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1271,14 +1449,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends TestingUpdateManyArgs>(args: SelectSubset<T, TestingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends DirectoryUpdateManyArgs>(args: SelectSubset<T, DirectoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Testings and returns the data updated in the database.
-     * @param {TestingUpdateManyAndReturnArgs} args - Arguments to update many Testings.
+     * Update zero or more Directories and returns the data updated in the database.
+     * @param {DirectoryUpdateManyAndReturnArgs} args - Arguments to update many Directories.
      * @example
-     * // Update many Testings
-     * const testing = await prisma.testing.updateManyAndReturn({
+     * // Update many Directories
+     * const directory = await prisma.directory.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1287,8 +1465,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Testings and only return the `id`
-     * const testingWithIdOnly = await prisma.testing.updateManyAndReturn({
+     * // Update zero or more Directories and only return the `id`
+     * const directoryWithIdOnly = await prisma.directory.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -1301,56 +1479,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends TestingUpdateManyAndReturnArgs>(args: SelectSubset<T, TestingUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TestingPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends DirectoryUpdateManyAndReturnArgs>(args: SelectSubset<T, DirectoryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DirectoryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Testing.
-     * @param {TestingUpsertArgs} args - Arguments to update or create a Testing.
+     * Create or update one Directory.
+     * @param {DirectoryUpsertArgs} args - Arguments to update or create a Directory.
      * @example
-     * // Update or create a Testing
-     * const testing = await prisma.testing.upsert({
+     * // Update or create a Directory
+     * const directory = await prisma.directory.upsert({
      *   create: {
-     *     // ... data to create a Testing
+     *     // ... data to create a Directory
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Testing we want to update
+     *     // ... the filter for the Directory we want to update
      *   }
      * })
      */
-    upsert<T extends TestingUpsertArgs>(args: SelectSubset<T, TestingUpsertArgs<ExtArgs>>): Prisma__TestingClient<$Result.GetResult<Prisma.$TestingPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends DirectoryUpsertArgs>(args: SelectSubset<T, DirectoryUpsertArgs<ExtArgs>>): Prisma__DirectoryClient<$Result.GetResult<Prisma.$DirectoryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Testings.
+     * Count the number of Directories.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TestingCountArgs} args - Arguments to filter Testings to count.
+     * @param {DirectoryCountArgs} args - Arguments to filter Directories to count.
      * @example
-     * // Count the number of Testings
-     * const count = await prisma.testing.count({
+     * // Count the number of Directories
+     * const count = await prisma.directory.count({
      *   where: {
-     *     // ... the filter for the Testings we want to count
+     *     // ... the filter for the Directories we want to count
      *   }
      * })
     **/
-    count<T extends TestingCountArgs>(
-      args?: Subset<T, TestingCountArgs>,
+    count<T extends DirectoryCountArgs>(
+      args?: Subset<T, DirectoryCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], TestingCountAggregateOutputType>
+          : GetScalarType<T['select'], DirectoryCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Testing.
+     * Allows you to perform aggregations operations on a Directory.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TestingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {DirectoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -1370,13 +1548,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends TestingAggregateArgs>(args: Subset<T, TestingAggregateArgs>): Prisma.PrismaPromise<GetTestingAggregateType<T>>
+    aggregate<T extends DirectoryAggregateArgs>(args: Subset<T, DirectoryAggregateArgs>): Prisma.PrismaPromise<GetDirectoryAggregateType<T>>
 
     /**
-     * Group by Testing.
+     * Group by Directory.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TestingGroupByArgs} args - Group by arguments.
+     * @param {DirectoryGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -1391,14 +1569,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends TestingGroupByArgs,
+      T extends DirectoryGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: TestingGroupByArgs['orderBy'] }
-        : { orderBy?: TestingGroupByArgs['orderBy'] },
+        ? { orderBy: DirectoryGroupByArgs['orderBy'] }
+        : { orderBy?: DirectoryGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -1447,21 +1625,24 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, TestingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTestingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, DirectoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDirectoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Testing model
+   * Fields of the Directory model
    */
-  readonly fields: TestingFieldRefs;
+  readonly fields: DirectoryFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Testing.
+   * The delegate class that acts as a "Promise-like" for Directory.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__TestingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__DirectoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    parentDir<T extends Directory$parentDirArgs<ExtArgs> = {}>(args?: Subset<T, Directory$parentDirArgs<ExtArgs>>): Prisma__DirectoryClient<$Result.GetResult<Prisma.$DirectoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    childDirs<T extends Directory$childDirsArgs<ExtArgs> = {}>(args?: Subset<T, Directory$childDirsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DirectoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    childFiles<T extends Directory$childFilesArgs<ExtArgs> = {}>(args?: Subset<T, Directory$childFilesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1488,374 +1669,1679 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Testing model
+   * Fields of the Directory model
    */
-  interface TestingFieldRefs {
-    readonly id: FieldRef<"Testing", 'Int'>
-    readonly message: FieldRef<"Testing", 'String'>
+  interface DirectoryFieldRefs {
+    readonly id: FieldRef<"Directory", 'String'>
+    readonly name: FieldRef<"Directory", 'String'>
+    readonly createdAt: FieldRef<"Directory", 'DateTime'>
+    readonly updatedAt: FieldRef<"Directory", 'DateTime'>
+    readonly parentDirId: FieldRef<"Directory", 'String'>
+    readonly createdBy: FieldRef<"Directory", 'String'>
+    readonly updatedBy: FieldRef<"Directory", 'String'>
   }
     
 
   // Custom InputTypes
   /**
-   * Testing findUnique
+   * Directory findUnique
    */
-  export type TestingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DirectoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Testing
+     * Select specific fields to fetch from the Directory
      */
-    select?: TestingSelect<ExtArgs> | null
+    select?: DirectorySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Testing
+     * Omit specific fields from the Directory
      */
-    omit?: TestingOmit<ExtArgs> | null
+    omit?: DirectoryOmit<ExtArgs> | null
     /**
-     * Filter, which Testing to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where: TestingWhereUniqueInput
+    include?: DirectoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Directory to fetch.
+     */
+    where: DirectoryWhereUniqueInput
   }
 
   /**
-   * Testing findUniqueOrThrow
+   * Directory findUniqueOrThrow
    */
-  export type TestingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DirectoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Testing
+     * Select specific fields to fetch from the Directory
      */
-    select?: TestingSelect<ExtArgs> | null
+    select?: DirectorySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Testing
+     * Omit specific fields from the Directory
      */
-    omit?: TestingOmit<ExtArgs> | null
+    omit?: DirectoryOmit<ExtArgs> | null
     /**
-     * Filter, which Testing to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where: TestingWhereUniqueInput
+    include?: DirectoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Directory to fetch.
+     */
+    where: DirectoryWhereUniqueInput
   }
 
   /**
-   * Testing findFirst
+   * Directory findFirst
    */
-  export type TestingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DirectoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Testing
+     * Select specific fields to fetch from the Directory
      */
-    select?: TestingSelect<ExtArgs> | null
+    select?: DirectorySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Testing
+     * Omit specific fields from the Directory
      */
-    omit?: TestingOmit<ExtArgs> | null
+    omit?: DirectoryOmit<ExtArgs> | null
     /**
-     * Filter, which Testing to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: TestingWhereInput
+    include?: DirectoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Directory to fetch.
+     */
+    where?: DirectoryWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Testings to fetch.
+     * Determine the order of Directories to fetch.
      */
-    orderBy?: TestingOrderByWithRelationInput | TestingOrderByWithRelationInput[]
+    orderBy?: DirectoryOrderByWithRelationInput | DirectoryOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Testings.
+     * Sets the position for searching for Directories.
      */
-    cursor?: TestingWhereUniqueInput
+    cursor?: DirectoryWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Testings from the position of the cursor.
+     * Take `±n` Directories from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Testings.
+     * Skip the first `n` Directories.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Testings.
+     * Filter by unique combinations of Directories.
      */
-    distinct?: TestingScalarFieldEnum | TestingScalarFieldEnum[]
+    distinct?: DirectoryScalarFieldEnum | DirectoryScalarFieldEnum[]
   }
 
   /**
-   * Testing findFirstOrThrow
+   * Directory findFirstOrThrow
    */
-  export type TestingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DirectoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Testing
+     * Select specific fields to fetch from the Directory
      */
-    select?: TestingSelect<ExtArgs> | null
+    select?: DirectorySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Testing
+     * Omit specific fields from the Directory
      */
-    omit?: TestingOmit<ExtArgs> | null
+    omit?: DirectoryOmit<ExtArgs> | null
     /**
-     * Filter, which Testing to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: TestingWhereInput
+    include?: DirectoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Directory to fetch.
+     */
+    where?: DirectoryWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Testings to fetch.
+     * Determine the order of Directories to fetch.
      */
-    orderBy?: TestingOrderByWithRelationInput | TestingOrderByWithRelationInput[]
+    orderBy?: DirectoryOrderByWithRelationInput | DirectoryOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Testings.
+     * Sets the position for searching for Directories.
      */
-    cursor?: TestingWhereUniqueInput
+    cursor?: DirectoryWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Testings from the position of the cursor.
+     * Take `±n` Directories from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Testings.
+     * Skip the first `n` Directories.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Testings.
+     * Filter by unique combinations of Directories.
      */
-    distinct?: TestingScalarFieldEnum | TestingScalarFieldEnum[]
+    distinct?: DirectoryScalarFieldEnum | DirectoryScalarFieldEnum[]
   }
 
   /**
-   * Testing findMany
+   * Directory findMany
    */
-  export type TestingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DirectoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Testing
+     * Select specific fields to fetch from the Directory
      */
-    select?: TestingSelect<ExtArgs> | null
+    select?: DirectorySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Testing
+     * Omit specific fields from the Directory
      */
-    omit?: TestingOmit<ExtArgs> | null
+    omit?: DirectoryOmit<ExtArgs> | null
     /**
-     * Filter, which Testings to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: TestingWhereInput
+    include?: DirectoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Directories to fetch.
+     */
+    where?: DirectoryWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Testings to fetch.
+     * Determine the order of Directories to fetch.
      */
-    orderBy?: TestingOrderByWithRelationInput | TestingOrderByWithRelationInput[]
+    orderBy?: DirectoryOrderByWithRelationInput | DirectoryOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Testings.
+     * Sets the position for listing Directories.
      */
-    cursor?: TestingWhereUniqueInput
+    cursor?: DirectoryWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Testings from the position of the cursor.
+     * Take `±n` Directories from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Testings.
+     * Skip the first `n` Directories.
      */
     skip?: number
-    distinct?: TestingScalarFieldEnum | TestingScalarFieldEnum[]
+    distinct?: DirectoryScalarFieldEnum | DirectoryScalarFieldEnum[]
   }
 
   /**
-   * Testing create
+   * Directory create
    */
-  export type TestingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DirectoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Testing
+     * Select specific fields to fetch from the Directory
      */
-    select?: TestingSelect<ExtArgs> | null
+    select?: DirectorySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Testing
+     * Omit specific fields from the Directory
      */
-    omit?: TestingOmit<ExtArgs> | null
+    omit?: DirectoryOmit<ExtArgs> | null
     /**
-     * The data needed to create a Testing.
+     * Choose, which related nodes to fetch as well
      */
-    data: XOR<TestingCreateInput, TestingUncheckedCreateInput>
+    include?: DirectoryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Directory.
+     */
+    data: XOR<DirectoryCreateInput, DirectoryUncheckedCreateInput>
   }
 
   /**
-   * Testing createMany
+   * Directory createMany
    */
-  export type TestingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DirectoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Testings.
+     * The data used to create many Directories.
      */
-    data: TestingCreateManyInput | TestingCreateManyInput[]
+    data: DirectoryCreateManyInput | DirectoryCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Testing createManyAndReturn
+   * Directory createManyAndReturn
    */
-  export type TestingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DirectoryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Testing
+     * Select specific fields to fetch from the Directory
      */
-    select?: TestingSelectCreateManyAndReturn<ExtArgs> | null
+    select?: DirectorySelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Testing
+     * Omit specific fields from the Directory
      */
-    omit?: TestingOmit<ExtArgs> | null
+    omit?: DirectoryOmit<ExtArgs> | null
     /**
-     * The data used to create many Testings.
+     * The data used to create many Directories.
      */
-    data: TestingCreateManyInput | TestingCreateManyInput[]
+    data: DirectoryCreateManyInput | DirectoryCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DirectoryIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Directory update
+   */
+  export type DirectoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Directory
+     */
+    select?: DirectorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Directory
+     */
+    omit?: DirectoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DirectoryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Directory.
+     */
+    data: XOR<DirectoryUpdateInput, DirectoryUncheckedUpdateInput>
+    /**
+     * Choose, which Directory to update.
+     */
+    where: DirectoryWhereUniqueInput
+  }
+
+  /**
+   * Directory updateMany
+   */
+  export type DirectoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Directories.
+     */
+    data: XOR<DirectoryUpdateManyMutationInput, DirectoryUncheckedUpdateManyInput>
+    /**
+     * Filter which Directories to update
+     */
+    where?: DirectoryWhereInput
+    /**
+     * Limit how many Directories to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Directory updateManyAndReturn
+   */
+  export type DirectoryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Directory
+     */
+    select?: DirectorySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Directory
+     */
+    omit?: DirectoryOmit<ExtArgs> | null
+    /**
+     * The data used to update Directories.
+     */
+    data: XOR<DirectoryUpdateManyMutationInput, DirectoryUncheckedUpdateManyInput>
+    /**
+     * Filter which Directories to update
+     */
+    where?: DirectoryWhereInput
+    /**
+     * Limit how many Directories to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DirectoryIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Directory upsert
+   */
+  export type DirectoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Directory
+     */
+    select?: DirectorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Directory
+     */
+    omit?: DirectoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DirectoryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Directory to update in case it exists.
+     */
+    where: DirectoryWhereUniqueInput
+    /**
+     * In case the Directory found by the `where` argument doesn't exist, create a new Directory with this data.
+     */
+    create: XOR<DirectoryCreateInput, DirectoryUncheckedCreateInput>
+    /**
+     * In case the Directory was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DirectoryUpdateInput, DirectoryUncheckedUpdateInput>
+  }
+
+  /**
+   * Directory delete
+   */
+  export type DirectoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Directory
+     */
+    select?: DirectorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Directory
+     */
+    omit?: DirectoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DirectoryInclude<ExtArgs> | null
+    /**
+     * Filter which Directory to delete.
+     */
+    where: DirectoryWhereUniqueInput
+  }
+
+  /**
+   * Directory deleteMany
+   */
+  export type DirectoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Directories to delete
+     */
+    where?: DirectoryWhereInput
+    /**
+     * Limit how many Directories to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Directory.parentDir
+   */
+  export type Directory$parentDirArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Directory
+     */
+    select?: DirectorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Directory
+     */
+    omit?: DirectoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DirectoryInclude<ExtArgs> | null
+    where?: DirectoryWhereInput
+  }
+
+  /**
+   * Directory.childDirs
+   */
+  export type Directory$childDirsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Directory
+     */
+    select?: DirectorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Directory
+     */
+    omit?: DirectoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DirectoryInclude<ExtArgs> | null
+    where?: DirectoryWhereInput
+    orderBy?: DirectoryOrderByWithRelationInput | DirectoryOrderByWithRelationInput[]
+    cursor?: DirectoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DirectoryScalarFieldEnum | DirectoryScalarFieldEnum[]
+  }
+
+  /**
+   * Directory.childFiles
+   */
+  export type Directory$childFilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the File
+     */
+    select?: FileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the File
+     */
+    omit?: FileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
+    where?: FileWhereInput
+    orderBy?: FileOrderByWithRelationInput | FileOrderByWithRelationInput[]
+    cursor?: FileWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FileScalarFieldEnum | FileScalarFieldEnum[]
+  }
+
+  /**
+   * Directory without action
+   */
+  export type DirectoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Directory
+     */
+    select?: DirectorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Directory
+     */
+    omit?: DirectoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DirectoryInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model File
+   */
+
+  export type AggregateFile = {
+    _count: FileCountAggregateOutputType | null
+    _avg: FileAvgAggregateOutputType | null
+    _sum: FileSumAggregateOutputType | null
+    _min: FileMinAggregateOutputType | null
+    _max: FileMaxAggregateOutputType | null
+  }
+
+  export type FileAvgAggregateOutputType = {
+    size: number | null
+  }
+
+  export type FileSumAggregateOutputType = {
+    size: number | null
+  }
+
+  export type FileMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    resourcePath: string | null
+    size: number | null
+    contentType: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    parentDirId: string | null
+    createdBy: string | null
+    updatedBy: string | null
+  }
+
+  export type FileMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    resourcePath: string | null
+    size: number | null
+    contentType: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    parentDirId: string | null
+    createdBy: string | null
+    updatedBy: string | null
+  }
+
+  export type FileCountAggregateOutputType = {
+    id: number
+    name: number
+    resourcePath: number
+    size: number
+    contentType: number
+    metadata: number
+    createdAt: number
+    updatedAt: number
+    parentDirId: number
+    createdBy: number
+    updatedBy: number
+    _all: number
+  }
+
+
+  export type FileAvgAggregateInputType = {
+    size?: true
+  }
+
+  export type FileSumAggregateInputType = {
+    size?: true
+  }
+
+  export type FileMinAggregateInputType = {
+    id?: true
+    name?: true
+    resourcePath?: true
+    size?: true
+    contentType?: true
+    createdAt?: true
+    updatedAt?: true
+    parentDirId?: true
+    createdBy?: true
+    updatedBy?: true
+  }
+
+  export type FileMaxAggregateInputType = {
+    id?: true
+    name?: true
+    resourcePath?: true
+    size?: true
+    contentType?: true
+    createdAt?: true
+    updatedAt?: true
+    parentDirId?: true
+    createdBy?: true
+    updatedBy?: true
+  }
+
+  export type FileCountAggregateInputType = {
+    id?: true
+    name?: true
+    resourcePath?: true
+    size?: true
+    contentType?: true
+    metadata?: true
+    createdAt?: true
+    updatedAt?: true
+    parentDirId?: true
+    createdBy?: true
+    updatedBy?: true
+    _all?: true
+  }
+
+  export type FileAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which File to aggregate.
+     */
+    where?: FileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Files to fetch.
+     */
+    orderBy?: FileOrderByWithRelationInput | FileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Files from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Files.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Files
+    **/
+    _count?: true | FileCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FileAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FileSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FileMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FileMaxAggregateInputType
+  }
+
+  export type GetFileAggregateType<T extends FileAggregateArgs> = {
+        [P in keyof T & keyof AggregateFile]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFile[P]>
+      : GetScalarType<T[P], AggregateFile[P]>
+  }
+
+
+
+
+  export type FileGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FileWhereInput
+    orderBy?: FileOrderByWithAggregationInput | FileOrderByWithAggregationInput[]
+    by: FileScalarFieldEnum[] | FileScalarFieldEnum
+    having?: FileScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FileCountAggregateInputType | true
+    _avg?: FileAvgAggregateInputType
+    _sum?: FileSumAggregateInputType
+    _min?: FileMinAggregateInputType
+    _max?: FileMaxAggregateInputType
+  }
+
+  export type FileGroupByOutputType = {
+    id: string
+    name: string
+    resourcePath: string
+    size: number
+    contentType: string
+    metadata: JsonValue
+    createdAt: Date
+    updatedAt: Date
+    parentDirId: string
+    createdBy: string
+    updatedBy: string
+    _count: FileCountAggregateOutputType | null
+    _avg: FileAvgAggregateOutputType | null
+    _sum: FileSumAggregateOutputType | null
+    _min: FileMinAggregateOutputType | null
+    _max: FileMaxAggregateOutputType | null
+  }
+
+  type GetFileGroupByPayload<T extends FileGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FileGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FileGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FileGroupByOutputType[P]>
+            : GetScalarType<T[P], FileGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    resourcePath?: boolean
+    size?: boolean
+    contentType?: boolean
+    metadata?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    parentDirId?: boolean
+    createdBy?: boolean
+    updatedBy?: boolean
+    parentDir?: boolean | File$parentDirArgs<ExtArgs>
+  }, ExtArgs["result"]["file"]>
+
+  export type FileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    resourcePath?: boolean
+    size?: boolean
+    contentType?: boolean
+    metadata?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    parentDirId?: boolean
+    createdBy?: boolean
+    updatedBy?: boolean
+    parentDir?: boolean | File$parentDirArgs<ExtArgs>
+  }, ExtArgs["result"]["file"]>
+
+  export type FileSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    resourcePath?: boolean
+    size?: boolean
+    contentType?: boolean
+    metadata?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    parentDirId?: boolean
+    createdBy?: boolean
+    updatedBy?: boolean
+    parentDir?: boolean | File$parentDirArgs<ExtArgs>
+  }, ExtArgs["result"]["file"]>
+
+  export type FileSelectScalar = {
+    id?: boolean
+    name?: boolean
+    resourcePath?: boolean
+    size?: boolean
+    contentType?: boolean
+    metadata?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    parentDirId?: boolean
+    createdBy?: boolean
+    updatedBy?: boolean
+  }
+
+  export type FileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "resourcePath" | "size" | "contentType" | "metadata" | "createdAt" | "updatedAt" | "parentDirId" | "createdBy" | "updatedBy", ExtArgs["result"]["file"]>
+  export type FileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    parentDir?: boolean | File$parentDirArgs<ExtArgs>
+  }
+  export type FileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    parentDir?: boolean | File$parentDirArgs<ExtArgs>
+  }
+  export type FileIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    parentDir?: boolean | File$parentDirArgs<ExtArgs>
+  }
+
+  export type $FilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "File"
+    objects: {
+      parentDir: Prisma.$DirectoryPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      resourcePath: string
+      size: number
+      contentType: string
+      metadata: Prisma.JsonValue
+      createdAt: Date
+      updatedAt: Date
+      parentDirId: string
+      createdBy: string
+      updatedBy: string
+    }, ExtArgs["result"]["file"]>
+    composites: {}
+  }
+
+  type FileGetPayload<S extends boolean | null | undefined | FileDefaultArgs> = $Result.GetResult<Prisma.$FilePayload, S>
+
+  type FileCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FileFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FileCountAggregateInputType | true
+    }
+
+  export interface FileDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['File'], meta: { name: 'File' } }
+    /**
+     * Find zero or one File that matches the filter.
+     * @param {FileFindUniqueArgs} args - Arguments to find a File
+     * @example
+     * // Get one File
+     * const file = await prisma.file.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FileFindUniqueArgs>(args: SelectSubset<T, FileFindUniqueArgs<ExtArgs>>): Prisma__FileClient<$Result.GetResult<Prisma.$FilePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one File that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FileFindUniqueOrThrowArgs} args - Arguments to find a File
+     * @example
+     * // Get one File
+     * const file = await prisma.file.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FileFindUniqueOrThrowArgs>(args: SelectSubset<T, FileFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FileClient<$Result.GetResult<Prisma.$FilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first File that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FileFindFirstArgs} args - Arguments to find a File
+     * @example
+     * // Get one File
+     * const file = await prisma.file.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FileFindFirstArgs>(args?: SelectSubset<T, FileFindFirstArgs<ExtArgs>>): Prisma__FileClient<$Result.GetResult<Prisma.$FilePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first File that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FileFindFirstOrThrowArgs} args - Arguments to find a File
+     * @example
+     * // Get one File
+     * const file = await prisma.file.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FileFindFirstOrThrowArgs>(args?: SelectSubset<T, FileFindFirstOrThrowArgs<ExtArgs>>): Prisma__FileClient<$Result.GetResult<Prisma.$FilePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Files that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FileFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Files
+     * const files = await prisma.file.findMany()
+     * 
+     * // Get first 10 Files
+     * const files = await prisma.file.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const fileWithIdOnly = await prisma.file.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FileFindManyArgs>(args?: SelectSubset<T, FileFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a File.
+     * @param {FileCreateArgs} args - Arguments to create a File.
+     * @example
+     * // Create one File
+     * const File = await prisma.file.create({
+     *   data: {
+     *     // ... data to create a File
+     *   }
+     * })
+     * 
+     */
+    create<T extends FileCreateArgs>(args: SelectSubset<T, FileCreateArgs<ExtArgs>>): Prisma__FileClient<$Result.GetResult<Prisma.$FilePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Files.
+     * @param {FileCreateManyArgs} args - Arguments to create many Files.
+     * @example
+     * // Create many Files
+     * const file = await prisma.file.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FileCreateManyArgs>(args?: SelectSubset<T, FileCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Files and returns the data saved in the database.
+     * @param {FileCreateManyAndReturnArgs} args - Arguments to create many Files.
+     * @example
+     * // Create many Files
+     * const file = await prisma.file.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Files and only return the `id`
+     * const fileWithIdOnly = await prisma.file.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FileCreateManyAndReturnArgs>(args?: SelectSubset<T, FileCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a File.
+     * @param {FileDeleteArgs} args - Arguments to delete one File.
+     * @example
+     * // Delete one File
+     * const File = await prisma.file.delete({
+     *   where: {
+     *     // ... filter to delete one File
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FileDeleteArgs>(args: SelectSubset<T, FileDeleteArgs<ExtArgs>>): Prisma__FileClient<$Result.GetResult<Prisma.$FilePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one File.
+     * @param {FileUpdateArgs} args - Arguments to update one File.
+     * @example
+     * // Update one File
+     * const file = await prisma.file.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FileUpdateArgs>(args: SelectSubset<T, FileUpdateArgs<ExtArgs>>): Prisma__FileClient<$Result.GetResult<Prisma.$FilePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Files.
+     * @param {FileDeleteManyArgs} args - Arguments to filter Files to delete.
+     * @example
+     * // Delete a few Files
+     * const { count } = await prisma.file.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FileDeleteManyArgs>(args?: SelectSubset<T, FileDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Files.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FileUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Files
+     * const file = await prisma.file.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FileUpdateManyArgs>(args: SelectSubset<T, FileUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Files and returns the data updated in the database.
+     * @param {FileUpdateManyAndReturnArgs} args - Arguments to update many Files.
+     * @example
+     * // Update many Files
+     * const file = await prisma.file.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Files and only return the `id`
+     * const fileWithIdOnly = await prisma.file.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FileUpdateManyAndReturnArgs>(args: SelectSubset<T, FileUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one File.
+     * @param {FileUpsertArgs} args - Arguments to update or create a File.
+     * @example
+     * // Update or create a File
+     * const file = await prisma.file.upsert({
+     *   create: {
+     *     // ... data to create a File
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the File we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FileUpsertArgs>(args: SelectSubset<T, FileUpsertArgs<ExtArgs>>): Prisma__FileClient<$Result.GetResult<Prisma.$FilePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Files.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FileCountArgs} args - Arguments to filter Files to count.
+     * @example
+     * // Count the number of Files
+     * const count = await prisma.file.count({
+     *   where: {
+     *     // ... the filter for the Files we want to count
+     *   }
+     * })
+    **/
+    count<T extends FileCountArgs>(
+      args?: Subset<T, FileCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FileCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a File.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FileAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FileAggregateArgs>(args: Subset<T, FileAggregateArgs>): Prisma.PrismaPromise<GetFileAggregateType<T>>
+
+    /**
+     * Group by File.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FileGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FileGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FileGroupByArgs['orderBy'] }
+        : { orderBy?: FileGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FileGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFileGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the File model
+   */
+  readonly fields: FileFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for File.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    parentDir<T extends File$parentDirArgs<ExtArgs> = {}>(args?: Subset<T, File$parentDirArgs<ExtArgs>>): Prisma__DirectoryClient<$Result.GetResult<Prisma.$DirectoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the File model
+   */
+  interface FileFieldRefs {
+    readonly id: FieldRef<"File", 'String'>
+    readonly name: FieldRef<"File", 'String'>
+    readonly resourcePath: FieldRef<"File", 'String'>
+    readonly size: FieldRef<"File", 'Int'>
+    readonly contentType: FieldRef<"File", 'String'>
+    readonly metadata: FieldRef<"File", 'Json'>
+    readonly createdAt: FieldRef<"File", 'DateTime'>
+    readonly updatedAt: FieldRef<"File", 'DateTime'>
+    readonly parentDirId: FieldRef<"File", 'String'>
+    readonly createdBy: FieldRef<"File", 'String'>
+    readonly updatedBy: FieldRef<"File", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * File findUnique
+   */
+  export type FileFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the File
+     */
+    select?: FileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the File
+     */
+    omit?: FileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
+    /**
+     * Filter, which File to fetch.
+     */
+    where: FileWhereUniqueInput
+  }
+
+  /**
+   * File findUniqueOrThrow
+   */
+  export type FileFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the File
+     */
+    select?: FileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the File
+     */
+    omit?: FileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
+    /**
+     * Filter, which File to fetch.
+     */
+    where: FileWhereUniqueInput
+  }
+
+  /**
+   * File findFirst
+   */
+  export type FileFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the File
+     */
+    select?: FileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the File
+     */
+    omit?: FileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
+    /**
+     * Filter, which File to fetch.
+     */
+    where?: FileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Files to fetch.
+     */
+    orderBy?: FileOrderByWithRelationInput | FileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Files.
+     */
+    cursor?: FileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Files from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Files.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Files.
+     */
+    distinct?: FileScalarFieldEnum | FileScalarFieldEnum[]
+  }
+
+  /**
+   * File findFirstOrThrow
+   */
+  export type FileFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the File
+     */
+    select?: FileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the File
+     */
+    omit?: FileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
+    /**
+     * Filter, which File to fetch.
+     */
+    where?: FileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Files to fetch.
+     */
+    orderBy?: FileOrderByWithRelationInput | FileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Files.
+     */
+    cursor?: FileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Files from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Files.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Files.
+     */
+    distinct?: FileScalarFieldEnum | FileScalarFieldEnum[]
+  }
+
+  /**
+   * File findMany
+   */
+  export type FileFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the File
+     */
+    select?: FileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the File
+     */
+    omit?: FileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
+    /**
+     * Filter, which Files to fetch.
+     */
+    where?: FileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Files to fetch.
+     */
+    orderBy?: FileOrderByWithRelationInput | FileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Files.
+     */
+    cursor?: FileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Files from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Files.
+     */
+    skip?: number
+    distinct?: FileScalarFieldEnum | FileScalarFieldEnum[]
+  }
+
+  /**
+   * File create
+   */
+  export type FileCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the File
+     */
+    select?: FileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the File
+     */
+    omit?: FileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
+    /**
+     * The data needed to create a File.
+     */
+    data: XOR<FileCreateInput, FileUncheckedCreateInput>
+  }
+
+  /**
+   * File createMany
+   */
+  export type FileCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Files.
+     */
+    data: FileCreateManyInput | FileCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Testing update
+   * File createManyAndReturn
    */
-  export type TestingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FileCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Testing
+     * Select specific fields to fetch from the File
      */
-    select?: TestingSelect<ExtArgs> | null
+    select?: FileSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Testing
+     * Omit specific fields from the File
      */
-    omit?: TestingOmit<ExtArgs> | null
+    omit?: FileOmit<ExtArgs> | null
     /**
-     * The data needed to update a Testing.
+     * The data used to create many Files.
      */
-    data: XOR<TestingUpdateInput, TestingUncheckedUpdateInput>
+    data: FileCreateManyInput | FileCreateManyInput[]
+    skipDuplicates?: boolean
     /**
-     * Choose, which Testing to update.
+     * Choose, which related nodes to fetch as well
      */
-    where: TestingWhereUniqueInput
+    include?: FileIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Testing updateMany
+   * File update
    */
-  export type TestingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FileUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Testings.
+     * Select specific fields to fetch from the File
      */
-    data: XOR<TestingUpdateManyMutationInput, TestingUncheckedUpdateManyInput>
+    select?: FileSelect<ExtArgs> | null
     /**
-     * Filter which Testings to update
+     * Omit specific fields from the File
      */
-    where?: TestingWhereInput
+    omit?: FileOmit<ExtArgs> | null
     /**
-     * Limit how many Testings to update.
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
+    /**
+     * The data needed to update a File.
+     */
+    data: XOR<FileUpdateInput, FileUncheckedUpdateInput>
+    /**
+     * Choose, which File to update.
+     */
+    where: FileWhereUniqueInput
+  }
+
+  /**
+   * File updateMany
+   */
+  export type FileUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Files.
+     */
+    data: XOR<FileUpdateManyMutationInput, FileUncheckedUpdateManyInput>
+    /**
+     * Filter which Files to update
+     */
+    where?: FileWhereInput
+    /**
+     * Limit how many Files to update.
      */
     limit?: number
   }
 
   /**
-   * Testing updateManyAndReturn
+   * File updateManyAndReturn
    */
-  export type TestingUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FileUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Testing
+     * Select specific fields to fetch from the File
      */
-    select?: TestingSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: FileSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Testing
+     * Omit specific fields from the File
      */
-    omit?: TestingOmit<ExtArgs> | null
+    omit?: FileOmit<ExtArgs> | null
     /**
-     * The data used to update Testings.
+     * The data used to update Files.
      */
-    data: XOR<TestingUpdateManyMutationInput, TestingUncheckedUpdateManyInput>
+    data: XOR<FileUpdateManyMutationInput, FileUncheckedUpdateManyInput>
     /**
-     * Filter which Testings to update
+     * Filter which Files to update
      */
-    where?: TestingWhereInput
+    where?: FileWhereInput
     /**
-     * Limit how many Testings to update.
+     * Limit how many Files to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * File upsert
+   */
+  export type FileUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the File
+     */
+    select?: FileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the File
+     */
+    omit?: FileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
+    /**
+     * The filter to search for the File to update in case it exists.
+     */
+    where: FileWhereUniqueInput
+    /**
+     * In case the File found by the `where` argument doesn't exist, create a new File with this data.
+     */
+    create: XOR<FileCreateInput, FileUncheckedCreateInput>
+    /**
+     * In case the File was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FileUpdateInput, FileUncheckedUpdateInput>
+  }
+
+  /**
+   * File delete
+   */
+  export type FileDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the File
+     */
+    select?: FileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the File
+     */
+    omit?: FileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
+    /**
+     * Filter which File to delete.
+     */
+    where: FileWhereUniqueInput
+  }
+
+  /**
+   * File deleteMany
+   */
+  export type FileDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Files to delete
+     */
+    where?: FileWhereInput
+    /**
+     * Limit how many Files to delete.
      */
     limit?: number
   }
 
   /**
-   * Testing upsert
+   * File.parentDir
    */
-  export type TestingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type File$parentDirArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Testing
+     * Select specific fields to fetch from the Directory
      */
-    select?: TestingSelect<ExtArgs> | null
+    select?: DirectorySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Testing
+     * Omit specific fields from the Directory
      */
-    omit?: TestingOmit<ExtArgs> | null
+    omit?: DirectoryOmit<ExtArgs> | null
     /**
-     * The filter to search for the Testing to update in case it exists.
+     * Choose, which related nodes to fetch as well
      */
-    where: TestingWhereUniqueInput
-    /**
-     * In case the Testing found by the `where` argument doesn't exist, create a new Testing with this data.
-     */
-    create: XOR<TestingCreateInput, TestingUncheckedCreateInput>
-    /**
-     * In case the Testing was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<TestingUpdateInput, TestingUncheckedUpdateInput>
+    include?: DirectoryInclude<ExtArgs> | null
+    where?: DirectoryWhereInput
   }
 
   /**
-   * Testing delete
+   * File without action
    */
-  export type TestingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Testing
+     * Select specific fields to fetch from the File
      */
-    select?: TestingSelect<ExtArgs> | null
+    select?: FileSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Testing
+     * Omit specific fields from the File
      */
-    omit?: TestingOmit<ExtArgs> | null
+    omit?: FileOmit<ExtArgs> | null
     /**
-     * Filter which Testing to delete.
+     * Choose, which related nodes to fetch as well
      */
-    where: TestingWhereUniqueInput
-  }
-
-  /**
-   * Testing deleteMany
-   */
-  export type TestingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Testings to delete
-     */
-    where?: TestingWhereInput
-    /**
-     * Limit how many Testings to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Testing without action
-   */
-  export type TestingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Testing
-     */
-    select?: TestingSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Testing
-     */
-    omit?: TestingOmit<ExtArgs> | null
+    include?: FileInclude<ExtArgs> | null
   }
 
 
@@ -1873,12 +3359,34 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-  export const TestingScalarFieldEnum: {
+  export const DirectoryScalarFieldEnum: {
     id: 'id',
-    message: 'message'
+    name: 'name',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    parentDirId: 'parentDirId',
+    createdBy: 'createdBy',
+    updatedBy: 'updatedBy'
   };
 
-  export type TestingScalarFieldEnum = (typeof TestingScalarFieldEnum)[keyof typeof TestingScalarFieldEnum]
+  export type DirectoryScalarFieldEnum = (typeof DirectoryScalarFieldEnum)[keyof typeof DirectoryScalarFieldEnum]
+
+
+  export const FileScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    resourcePath: 'resourcePath',
+    size: 'size',
+    contentType: 'contentType',
+    metadata: 'metadata',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    parentDirId: 'parentDirId',
+    createdBy: 'createdBy',
+    updatedBy: 'updatedBy'
+  };
+
+  export type FileScalarFieldEnum = (typeof FileScalarFieldEnum)[keyof typeof FileScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -1889,6 +3397,13 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const JsonNullValueInput: {
+    JsonNull: typeof JsonNull
+  };
+
+  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
   export const QueryMode: {
     default: 'default',
     insensitive: 'insensitive'
@@ -1897,9 +3412,54 @@ export namespace Prisma {
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
 
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
+
+
   /**
    * Field references
    */
+
+
+  /**
+   * Reference to a field of type 'String'
+   */
+  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+    
+
+
+  /**
+   * Reference to a field of type 'String[]'
+   */
+  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime[]'
+   */
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
 
 
   /**
@@ -1917,16 +3477,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'String'
+   * Reference to a field of type 'Json'
    */
-  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
     
 
 
   /**
-   * Reference to a field of type 'String[]'
+   * Reference to a field of type 'QueryMode'
    */
-  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -1947,86 +3507,336 @@ export namespace Prisma {
    */
 
 
-  export type TestingWhereInput = {
-    AND?: TestingWhereInput | TestingWhereInput[]
-    OR?: TestingWhereInput[]
-    NOT?: TestingWhereInput | TestingWhereInput[]
-    id?: IntFilter<"Testing"> | number
-    message?: StringFilter<"Testing"> | string
+  export type DirectoryWhereInput = {
+    AND?: DirectoryWhereInput | DirectoryWhereInput[]
+    OR?: DirectoryWhereInput[]
+    NOT?: DirectoryWhereInput | DirectoryWhereInput[]
+    id?: StringFilter<"Directory"> | string
+    name?: StringFilter<"Directory"> | string
+    createdAt?: DateTimeFilter<"Directory"> | Date | string
+    updatedAt?: DateTimeFilter<"Directory"> | Date | string
+    parentDirId?: StringNullableFilter<"Directory"> | string | null
+    createdBy?: StringFilter<"Directory"> | string
+    updatedBy?: StringFilter<"Directory"> | string
+    parentDir?: XOR<DirectoryNullableScalarRelationFilter, DirectoryWhereInput> | null
+    childDirs?: DirectoryListRelationFilter
+    childFiles?: FileListRelationFilter
   }
 
-  export type TestingOrderByWithRelationInput = {
+  export type DirectoryOrderByWithRelationInput = {
     id?: SortOrder
-    message?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    parentDirId?: SortOrderInput | SortOrder
+    createdBy?: SortOrder
+    updatedBy?: SortOrder
+    parentDir?: DirectoryOrderByWithRelationInput
+    childDirs?: DirectoryOrderByRelationAggregateInput
+    childFiles?: FileOrderByRelationAggregateInput
   }
 
-  export type TestingWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: TestingWhereInput | TestingWhereInput[]
-    OR?: TestingWhereInput[]
-    NOT?: TestingWhereInput | TestingWhereInput[]
-    message?: StringFilter<"Testing"> | string
+  export type DirectoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: DirectoryWhereInput | DirectoryWhereInput[]
+    OR?: DirectoryWhereInput[]
+    NOT?: DirectoryWhereInput | DirectoryWhereInput[]
+    name?: StringFilter<"Directory"> | string
+    createdAt?: DateTimeFilter<"Directory"> | Date | string
+    updatedAt?: DateTimeFilter<"Directory"> | Date | string
+    parentDirId?: StringNullableFilter<"Directory"> | string | null
+    createdBy?: StringFilter<"Directory"> | string
+    updatedBy?: StringFilter<"Directory"> | string
+    parentDir?: XOR<DirectoryNullableScalarRelationFilter, DirectoryWhereInput> | null
+    childDirs?: DirectoryListRelationFilter
+    childFiles?: FileListRelationFilter
   }, "id">
 
-  export type TestingOrderByWithAggregationInput = {
+  export type DirectoryOrderByWithAggregationInput = {
     id?: SortOrder
-    message?: SortOrder
-    _count?: TestingCountOrderByAggregateInput
-    _avg?: TestingAvgOrderByAggregateInput
-    _max?: TestingMaxOrderByAggregateInput
-    _min?: TestingMinOrderByAggregateInput
-    _sum?: TestingSumOrderByAggregateInput
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    parentDirId?: SortOrderInput | SortOrder
+    createdBy?: SortOrder
+    updatedBy?: SortOrder
+    _count?: DirectoryCountOrderByAggregateInput
+    _max?: DirectoryMaxOrderByAggregateInput
+    _min?: DirectoryMinOrderByAggregateInput
   }
 
-  export type TestingScalarWhereWithAggregatesInput = {
-    AND?: TestingScalarWhereWithAggregatesInput | TestingScalarWhereWithAggregatesInput[]
-    OR?: TestingScalarWhereWithAggregatesInput[]
-    NOT?: TestingScalarWhereWithAggregatesInput | TestingScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Testing"> | number
-    message?: StringWithAggregatesFilter<"Testing"> | string
+  export type DirectoryScalarWhereWithAggregatesInput = {
+    AND?: DirectoryScalarWhereWithAggregatesInput | DirectoryScalarWhereWithAggregatesInput[]
+    OR?: DirectoryScalarWhereWithAggregatesInput[]
+    NOT?: DirectoryScalarWhereWithAggregatesInput | DirectoryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Directory"> | string
+    name?: StringWithAggregatesFilter<"Directory"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Directory"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Directory"> | Date | string
+    parentDirId?: StringNullableWithAggregatesFilter<"Directory"> | string | null
+    createdBy?: StringWithAggregatesFilter<"Directory"> | string
+    updatedBy?: StringWithAggregatesFilter<"Directory"> | string
   }
 
-  export type TestingCreateInput = {
-    message: string
+  export type FileWhereInput = {
+    AND?: FileWhereInput | FileWhereInput[]
+    OR?: FileWhereInput[]
+    NOT?: FileWhereInput | FileWhereInput[]
+    id?: StringFilter<"File"> | string
+    name?: StringFilter<"File"> | string
+    resourcePath?: StringFilter<"File"> | string
+    size?: IntFilter<"File"> | number
+    contentType?: StringFilter<"File"> | string
+    metadata?: JsonFilter<"File">
+    createdAt?: DateTimeFilter<"File"> | Date | string
+    updatedAt?: DateTimeFilter<"File"> | Date | string
+    parentDirId?: StringFilter<"File"> | string
+    createdBy?: StringFilter<"File"> | string
+    updatedBy?: StringFilter<"File"> | string
+    parentDir?: XOR<DirectoryNullableScalarRelationFilter, DirectoryWhereInput> | null
   }
 
-  export type TestingUncheckedCreateInput = {
-    id?: number
-    message: string
+  export type FileOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    resourcePath?: SortOrder
+    size?: SortOrder
+    contentType?: SortOrder
+    metadata?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    parentDirId?: SortOrder
+    createdBy?: SortOrder
+    updatedBy?: SortOrder
+    parentDir?: DirectoryOrderByWithRelationInput
   }
 
-  export type TestingUpdateInput = {
-    message?: StringFieldUpdateOperationsInput | string
+  export type FileWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: FileWhereInput | FileWhereInput[]
+    OR?: FileWhereInput[]
+    NOT?: FileWhereInput | FileWhereInput[]
+    name?: StringFilter<"File"> | string
+    resourcePath?: StringFilter<"File"> | string
+    size?: IntFilter<"File"> | number
+    contentType?: StringFilter<"File"> | string
+    metadata?: JsonFilter<"File">
+    createdAt?: DateTimeFilter<"File"> | Date | string
+    updatedAt?: DateTimeFilter<"File"> | Date | string
+    parentDirId?: StringFilter<"File"> | string
+    createdBy?: StringFilter<"File"> | string
+    updatedBy?: StringFilter<"File"> | string
+    parentDir?: XOR<DirectoryNullableScalarRelationFilter, DirectoryWhereInput> | null
+  }, "id">
+
+  export type FileOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    resourcePath?: SortOrder
+    size?: SortOrder
+    contentType?: SortOrder
+    metadata?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    parentDirId?: SortOrder
+    createdBy?: SortOrder
+    updatedBy?: SortOrder
+    _count?: FileCountOrderByAggregateInput
+    _avg?: FileAvgOrderByAggregateInput
+    _max?: FileMaxOrderByAggregateInput
+    _min?: FileMinOrderByAggregateInput
+    _sum?: FileSumOrderByAggregateInput
   }
 
-  export type TestingUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    message?: StringFieldUpdateOperationsInput | string
+  export type FileScalarWhereWithAggregatesInput = {
+    AND?: FileScalarWhereWithAggregatesInput | FileScalarWhereWithAggregatesInput[]
+    OR?: FileScalarWhereWithAggregatesInput[]
+    NOT?: FileScalarWhereWithAggregatesInput | FileScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"File"> | string
+    name?: StringWithAggregatesFilter<"File"> | string
+    resourcePath?: StringWithAggregatesFilter<"File"> | string
+    size?: IntWithAggregatesFilter<"File"> | number
+    contentType?: StringWithAggregatesFilter<"File"> | string
+    metadata?: JsonWithAggregatesFilter<"File">
+    createdAt?: DateTimeWithAggregatesFilter<"File"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"File"> | Date | string
+    parentDirId?: StringWithAggregatesFilter<"File"> | string
+    createdBy?: StringWithAggregatesFilter<"File"> | string
+    updatedBy?: StringWithAggregatesFilter<"File"> | string
   }
 
-  export type TestingCreateManyInput = {
-    id?: number
-    message: string
+  export type DirectoryCreateInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdBy: string
+    updatedBy: string
+    parentDir?: DirectoryCreateNestedOneWithoutChildDirsInput
+    childDirs?: DirectoryCreateNestedManyWithoutParentDirInput
+    childFiles?: FileCreateNestedManyWithoutParentDirInput
   }
 
-  export type TestingUpdateManyMutationInput = {
-    message?: StringFieldUpdateOperationsInput | string
+  export type DirectoryUncheckedCreateInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    parentDirId?: string | null
+    createdBy: string
+    updatedBy: string
+    childDirs?: DirectoryUncheckedCreateNestedManyWithoutParentDirInput
+    childFiles?: FileUncheckedCreateNestedManyWithoutParentDirInput
   }
 
-  export type TestingUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    message?: StringFieldUpdateOperationsInput | string
+  export type DirectoryUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: StringFieldUpdateOperationsInput | string
+    updatedBy?: StringFieldUpdateOperationsInput | string
+    parentDir?: DirectoryUpdateOneWithoutChildDirsNestedInput
+    childDirs?: DirectoryUpdateManyWithoutParentDirNestedInput
+    childFiles?: FileUpdateManyWithoutParentDirNestedInput
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
+  export type DirectoryUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    parentDirId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: StringFieldUpdateOperationsInput | string
+    updatedBy?: StringFieldUpdateOperationsInput | string
+    childDirs?: DirectoryUncheckedUpdateManyWithoutParentDirNestedInput
+    childFiles?: FileUncheckedUpdateManyWithoutParentDirNestedInput
+  }
+
+  export type DirectoryCreateManyInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    parentDirId?: string | null
+    createdBy: string
+    updatedBy: string
+  }
+
+  export type DirectoryUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: StringFieldUpdateOperationsInput | string
+    updatedBy?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DirectoryUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    parentDirId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: StringFieldUpdateOperationsInput | string
+    updatedBy?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FileCreateInput = {
+    id?: string
+    name: string
+    resourcePath: string
+    size: number
+    contentType: string
+    metadata: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdBy: string
+    updatedBy: string
+    parentDir?: DirectoryCreateNestedOneWithoutChildFilesInput
+  }
+
+  export type FileUncheckedCreateInput = {
+    id?: string
+    name: string
+    resourcePath: string
+    size: number
+    contentType: string
+    metadata: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    parentDirId: string
+    createdBy: string
+    updatedBy: string
+  }
+
+  export type FileUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    resourcePath?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    contentType?: StringFieldUpdateOperationsInput | string
+    metadata?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: StringFieldUpdateOperationsInput | string
+    updatedBy?: StringFieldUpdateOperationsInput | string
+    parentDir?: DirectoryUpdateOneWithoutChildFilesNestedInput
+  }
+
+  export type FileUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    resourcePath?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    contentType?: StringFieldUpdateOperationsInput | string
+    metadata?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    parentDirId?: StringFieldUpdateOperationsInput | string
+    createdBy?: StringFieldUpdateOperationsInput | string
+    updatedBy?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FileCreateManyInput = {
+    id?: string
+    name: string
+    resourcePath: string
+    size: number
+    contentType: string
+    metadata: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    parentDirId: string
+    createdBy: string
+    updatedBy: string
+  }
+
+  export type FileUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    resourcePath?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    contentType?: StringFieldUpdateOperationsInput | string
+    metadata?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: StringFieldUpdateOperationsInput | string
+    updatedBy?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FileUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    resourcePath?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    contentType?: StringFieldUpdateOperationsInput | string
+    metadata?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    parentDirId?: StringFieldUpdateOperationsInput | string
+    createdBy?: StringFieldUpdateOperationsInput | string
+    updatedBy?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -2044,43 +3854,90 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type TestingCountOrderByAggregateInput = {
-    id?: SortOrder
-    message?: SortOrder
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type TestingAvgOrderByAggregateInput = {
-    id?: SortOrder
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type TestingMaxOrderByAggregateInput = {
-    id?: SortOrder
-    message?: SortOrder
+  export type DirectoryNullableScalarRelationFilter = {
+    is?: DirectoryWhereInput | null
+    isNot?: DirectoryWhereInput | null
   }
 
-  export type TestingMinOrderByAggregateInput = {
-    id?: SortOrder
-    message?: SortOrder
+  export type DirectoryListRelationFilter = {
+    every?: DirectoryWhereInput
+    some?: DirectoryWhereInput
+    none?: DirectoryWhereInput
   }
 
-  export type TestingSumOrderByAggregateInput = {
-    id?: SortOrder
+  export type FileListRelationFilter = {
+    every?: FileWhereInput
+    some?: FileWhereInput
+    none?: FileWhereInput
   }
 
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
+  export type DirectoryOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FileOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type DirectoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    parentDirId?: SortOrder
+    createdBy?: SortOrder
+    updatedBy?: SortOrder
+  }
+
+  export type DirectoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    parentDirId?: SortOrder
+    createdBy?: SortOrder
+    updatedBy?: SortOrder
+  }
+
+  export type DirectoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    parentDirId?: SortOrder
+    createdBy?: SortOrder
+    updatedBy?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -2101,8 +3958,278 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+  export type JsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type FileCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    resourcePath?: SortOrder
+    size?: SortOrder
+    contentType?: SortOrder
+    metadata?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    parentDirId?: SortOrder
+    createdBy?: SortOrder
+    updatedBy?: SortOrder
+  }
+
+  export type FileAvgOrderByAggregateInput = {
+    size?: SortOrder
+  }
+
+  export type FileMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    resourcePath?: SortOrder
+    size?: SortOrder
+    contentType?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    parentDirId?: SortOrder
+    createdBy?: SortOrder
+    updatedBy?: SortOrder
+  }
+
+  export type FileMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    resourcePath?: SortOrder
+    size?: SortOrder
+    contentType?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    parentDirId?: SortOrder
+    createdBy?: SortOrder
+    updatedBy?: SortOrder
+  }
+
+  export type FileSumOrderByAggregateInput = {
+    size?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
+  }
+
+  export type DirectoryCreateNestedOneWithoutChildDirsInput = {
+    create?: XOR<DirectoryCreateWithoutChildDirsInput, DirectoryUncheckedCreateWithoutChildDirsInput>
+    connectOrCreate?: DirectoryCreateOrConnectWithoutChildDirsInput
+    connect?: DirectoryWhereUniqueInput
+  }
+
+  export type DirectoryCreateNestedManyWithoutParentDirInput = {
+    create?: XOR<DirectoryCreateWithoutParentDirInput, DirectoryUncheckedCreateWithoutParentDirInput> | DirectoryCreateWithoutParentDirInput[] | DirectoryUncheckedCreateWithoutParentDirInput[]
+    connectOrCreate?: DirectoryCreateOrConnectWithoutParentDirInput | DirectoryCreateOrConnectWithoutParentDirInput[]
+    createMany?: DirectoryCreateManyParentDirInputEnvelope
+    connect?: DirectoryWhereUniqueInput | DirectoryWhereUniqueInput[]
+  }
+
+  export type FileCreateNestedManyWithoutParentDirInput = {
+    create?: XOR<FileCreateWithoutParentDirInput, FileUncheckedCreateWithoutParentDirInput> | FileCreateWithoutParentDirInput[] | FileUncheckedCreateWithoutParentDirInput[]
+    connectOrCreate?: FileCreateOrConnectWithoutParentDirInput | FileCreateOrConnectWithoutParentDirInput[]
+    createMany?: FileCreateManyParentDirInputEnvelope
+    connect?: FileWhereUniqueInput | FileWhereUniqueInput[]
+  }
+
+  export type DirectoryUncheckedCreateNestedManyWithoutParentDirInput = {
+    create?: XOR<DirectoryCreateWithoutParentDirInput, DirectoryUncheckedCreateWithoutParentDirInput> | DirectoryCreateWithoutParentDirInput[] | DirectoryUncheckedCreateWithoutParentDirInput[]
+    connectOrCreate?: DirectoryCreateOrConnectWithoutParentDirInput | DirectoryCreateOrConnectWithoutParentDirInput[]
+    createMany?: DirectoryCreateManyParentDirInputEnvelope
+    connect?: DirectoryWhereUniqueInput | DirectoryWhereUniqueInput[]
+  }
+
+  export type FileUncheckedCreateNestedManyWithoutParentDirInput = {
+    create?: XOR<FileCreateWithoutParentDirInput, FileUncheckedCreateWithoutParentDirInput> | FileCreateWithoutParentDirInput[] | FileUncheckedCreateWithoutParentDirInput[]
+    connectOrCreate?: FileCreateOrConnectWithoutParentDirInput | FileCreateOrConnectWithoutParentDirInput[]
+    createMany?: FileCreateManyParentDirInputEnvelope
+    connect?: FileWhereUniqueInput | FileWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
+  export type DirectoryUpdateOneWithoutChildDirsNestedInput = {
+    create?: XOR<DirectoryCreateWithoutChildDirsInput, DirectoryUncheckedCreateWithoutChildDirsInput>
+    connectOrCreate?: DirectoryCreateOrConnectWithoutChildDirsInput
+    upsert?: DirectoryUpsertWithoutChildDirsInput
+    disconnect?: DirectoryWhereInput | boolean
+    delete?: DirectoryWhereInput | boolean
+    connect?: DirectoryWhereUniqueInput
+    update?: XOR<XOR<DirectoryUpdateToOneWithWhereWithoutChildDirsInput, DirectoryUpdateWithoutChildDirsInput>, DirectoryUncheckedUpdateWithoutChildDirsInput>
+  }
+
+  export type DirectoryUpdateManyWithoutParentDirNestedInput = {
+    create?: XOR<DirectoryCreateWithoutParentDirInput, DirectoryUncheckedCreateWithoutParentDirInput> | DirectoryCreateWithoutParentDirInput[] | DirectoryUncheckedCreateWithoutParentDirInput[]
+    connectOrCreate?: DirectoryCreateOrConnectWithoutParentDirInput | DirectoryCreateOrConnectWithoutParentDirInput[]
+    upsert?: DirectoryUpsertWithWhereUniqueWithoutParentDirInput | DirectoryUpsertWithWhereUniqueWithoutParentDirInput[]
+    createMany?: DirectoryCreateManyParentDirInputEnvelope
+    set?: DirectoryWhereUniqueInput | DirectoryWhereUniqueInput[]
+    disconnect?: DirectoryWhereUniqueInput | DirectoryWhereUniqueInput[]
+    delete?: DirectoryWhereUniqueInput | DirectoryWhereUniqueInput[]
+    connect?: DirectoryWhereUniqueInput | DirectoryWhereUniqueInput[]
+    update?: DirectoryUpdateWithWhereUniqueWithoutParentDirInput | DirectoryUpdateWithWhereUniqueWithoutParentDirInput[]
+    updateMany?: DirectoryUpdateManyWithWhereWithoutParentDirInput | DirectoryUpdateManyWithWhereWithoutParentDirInput[]
+    deleteMany?: DirectoryScalarWhereInput | DirectoryScalarWhereInput[]
+  }
+
+  export type FileUpdateManyWithoutParentDirNestedInput = {
+    create?: XOR<FileCreateWithoutParentDirInput, FileUncheckedCreateWithoutParentDirInput> | FileCreateWithoutParentDirInput[] | FileUncheckedCreateWithoutParentDirInput[]
+    connectOrCreate?: FileCreateOrConnectWithoutParentDirInput | FileCreateOrConnectWithoutParentDirInput[]
+    upsert?: FileUpsertWithWhereUniqueWithoutParentDirInput | FileUpsertWithWhereUniqueWithoutParentDirInput[]
+    createMany?: FileCreateManyParentDirInputEnvelope
+    set?: FileWhereUniqueInput | FileWhereUniqueInput[]
+    disconnect?: FileWhereUniqueInput | FileWhereUniqueInput[]
+    delete?: FileWhereUniqueInput | FileWhereUniqueInput[]
+    connect?: FileWhereUniqueInput | FileWhereUniqueInput[]
+    update?: FileUpdateWithWhereUniqueWithoutParentDirInput | FileUpdateWithWhereUniqueWithoutParentDirInput[]
+    updateMany?: FileUpdateManyWithWhereWithoutParentDirInput | FileUpdateManyWithWhereWithoutParentDirInput[]
+    deleteMany?: FileScalarWhereInput | FileScalarWhereInput[]
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type DirectoryUncheckedUpdateManyWithoutParentDirNestedInput = {
+    create?: XOR<DirectoryCreateWithoutParentDirInput, DirectoryUncheckedCreateWithoutParentDirInput> | DirectoryCreateWithoutParentDirInput[] | DirectoryUncheckedCreateWithoutParentDirInput[]
+    connectOrCreate?: DirectoryCreateOrConnectWithoutParentDirInput | DirectoryCreateOrConnectWithoutParentDirInput[]
+    upsert?: DirectoryUpsertWithWhereUniqueWithoutParentDirInput | DirectoryUpsertWithWhereUniqueWithoutParentDirInput[]
+    createMany?: DirectoryCreateManyParentDirInputEnvelope
+    set?: DirectoryWhereUniqueInput | DirectoryWhereUniqueInput[]
+    disconnect?: DirectoryWhereUniqueInput | DirectoryWhereUniqueInput[]
+    delete?: DirectoryWhereUniqueInput | DirectoryWhereUniqueInput[]
+    connect?: DirectoryWhereUniqueInput | DirectoryWhereUniqueInput[]
+    update?: DirectoryUpdateWithWhereUniqueWithoutParentDirInput | DirectoryUpdateWithWhereUniqueWithoutParentDirInput[]
+    updateMany?: DirectoryUpdateManyWithWhereWithoutParentDirInput | DirectoryUpdateManyWithWhereWithoutParentDirInput[]
+    deleteMany?: DirectoryScalarWhereInput | DirectoryScalarWhereInput[]
+  }
+
+  export type FileUncheckedUpdateManyWithoutParentDirNestedInput = {
+    create?: XOR<FileCreateWithoutParentDirInput, FileUncheckedCreateWithoutParentDirInput> | FileCreateWithoutParentDirInput[] | FileUncheckedCreateWithoutParentDirInput[]
+    connectOrCreate?: FileCreateOrConnectWithoutParentDirInput | FileCreateOrConnectWithoutParentDirInput[]
+    upsert?: FileUpsertWithWhereUniqueWithoutParentDirInput | FileUpsertWithWhereUniqueWithoutParentDirInput[]
+    createMany?: FileCreateManyParentDirInputEnvelope
+    set?: FileWhereUniqueInput | FileWhereUniqueInput[]
+    disconnect?: FileWhereUniqueInput | FileWhereUniqueInput[]
+    delete?: FileWhereUniqueInput | FileWhereUniqueInput[]
+    connect?: FileWhereUniqueInput | FileWhereUniqueInput[]
+    update?: FileUpdateWithWhereUniqueWithoutParentDirInput | FileUpdateWithWhereUniqueWithoutParentDirInput[]
+    updateMany?: FileUpdateManyWithWhereWithoutParentDirInput | FileUpdateManyWithWhereWithoutParentDirInput[]
+    deleteMany?: FileScalarWhereInput | FileScalarWhereInput[]
+  }
+
+  export type DirectoryCreateNestedOneWithoutChildFilesInput = {
+    create?: XOR<DirectoryCreateWithoutChildFilesInput, DirectoryUncheckedCreateWithoutChildFilesInput>
+    connectOrCreate?: DirectoryCreateOrConnectWithoutChildFilesInput
+    connect?: DirectoryWhereUniqueInput
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -2113,15 +4240,14 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
+  export type DirectoryUpdateOneWithoutChildFilesNestedInput = {
+    create?: XOR<DirectoryCreateWithoutChildFilesInput, DirectoryUncheckedCreateWithoutChildFilesInput>
+    connectOrCreate?: DirectoryCreateOrConnectWithoutChildFilesInput
+    upsert?: DirectoryUpsertWithoutChildFilesInput
+    disconnect?: DirectoryWhereInput | boolean
+    delete?: DirectoryWhereInput | boolean
+    connect?: DirectoryWhereUniqueInput
+    update?: XOR<XOR<DirectoryUpdateToOneWithWhereWithoutChildFilesInput, DirectoryUpdateWithoutChildFilesInput>, DirectoryUncheckedUpdateWithoutChildFilesInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -2136,6 +4262,101 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -2164,22 +4385,370 @@ export namespace Prisma {
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
   }
+  export type NestedJsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
 
-  export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type DirectoryCreateWithoutChildDirsInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdBy: string
+    updatedBy: string
+    parentDir?: DirectoryCreateNestedOneWithoutChildDirsInput
+    childFiles?: FileCreateNestedManyWithoutParentDirInput
+  }
+
+  export type DirectoryUncheckedCreateWithoutChildDirsInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    parentDirId?: string | null
+    createdBy: string
+    updatedBy: string
+    childFiles?: FileUncheckedCreateNestedManyWithoutParentDirInput
+  }
+
+  export type DirectoryCreateOrConnectWithoutChildDirsInput = {
+    where: DirectoryWhereUniqueInput
+    create: XOR<DirectoryCreateWithoutChildDirsInput, DirectoryUncheckedCreateWithoutChildDirsInput>
+  }
+
+  export type DirectoryCreateWithoutParentDirInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdBy: string
+    updatedBy: string
+    childDirs?: DirectoryCreateNestedManyWithoutParentDirInput
+    childFiles?: FileCreateNestedManyWithoutParentDirInput
+  }
+
+  export type DirectoryUncheckedCreateWithoutParentDirInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdBy: string
+    updatedBy: string
+    childDirs?: DirectoryUncheckedCreateNestedManyWithoutParentDirInput
+    childFiles?: FileUncheckedCreateNestedManyWithoutParentDirInput
+  }
+
+  export type DirectoryCreateOrConnectWithoutParentDirInput = {
+    where: DirectoryWhereUniqueInput
+    create: XOR<DirectoryCreateWithoutParentDirInput, DirectoryUncheckedCreateWithoutParentDirInput>
+  }
+
+  export type DirectoryCreateManyParentDirInputEnvelope = {
+    data: DirectoryCreateManyParentDirInput | DirectoryCreateManyParentDirInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FileCreateWithoutParentDirInput = {
+    id?: string
+    name: string
+    resourcePath: string
+    size: number
+    contentType: string
+    metadata: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdBy: string
+    updatedBy: string
+  }
+
+  export type FileUncheckedCreateWithoutParentDirInput = {
+    id?: string
+    name: string
+    resourcePath: string
+    size: number
+    contentType: string
+    metadata: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdBy: string
+    updatedBy: string
+  }
+
+  export type FileCreateOrConnectWithoutParentDirInput = {
+    where: FileWhereUniqueInput
+    create: XOR<FileCreateWithoutParentDirInput, FileUncheckedCreateWithoutParentDirInput>
+  }
+
+  export type FileCreateManyParentDirInputEnvelope = {
+    data: FileCreateManyParentDirInput | FileCreateManyParentDirInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type DirectoryUpsertWithoutChildDirsInput = {
+    update: XOR<DirectoryUpdateWithoutChildDirsInput, DirectoryUncheckedUpdateWithoutChildDirsInput>
+    create: XOR<DirectoryCreateWithoutChildDirsInput, DirectoryUncheckedCreateWithoutChildDirsInput>
+    where?: DirectoryWhereInput
+  }
+
+  export type DirectoryUpdateToOneWithWhereWithoutChildDirsInput = {
+    where?: DirectoryWhereInput
+    data: XOR<DirectoryUpdateWithoutChildDirsInput, DirectoryUncheckedUpdateWithoutChildDirsInput>
+  }
+
+  export type DirectoryUpdateWithoutChildDirsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: StringFieldUpdateOperationsInput | string
+    updatedBy?: StringFieldUpdateOperationsInput | string
+    parentDir?: DirectoryUpdateOneWithoutChildDirsNestedInput
+    childFiles?: FileUpdateManyWithoutParentDirNestedInput
+  }
+
+  export type DirectoryUncheckedUpdateWithoutChildDirsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    parentDirId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: StringFieldUpdateOperationsInput | string
+    updatedBy?: StringFieldUpdateOperationsInput | string
+    childFiles?: FileUncheckedUpdateManyWithoutParentDirNestedInput
+  }
+
+  export type DirectoryUpsertWithWhereUniqueWithoutParentDirInput = {
+    where: DirectoryWhereUniqueInput
+    update: XOR<DirectoryUpdateWithoutParentDirInput, DirectoryUncheckedUpdateWithoutParentDirInput>
+    create: XOR<DirectoryCreateWithoutParentDirInput, DirectoryUncheckedCreateWithoutParentDirInput>
+  }
+
+  export type DirectoryUpdateWithWhereUniqueWithoutParentDirInput = {
+    where: DirectoryWhereUniqueInput
+    data: XOR<DirectoryUpdateWithoutParentDirInput, DirectoryUncheckedUpdateWithoutParentDirInput>
+  }
+
+  export type DirectoryUpdateManyWithWhereWithoutParentDirInput = {
+    where: DirectoryScalarWhereInput
+    data: XOR<DirectoryUpdateManyMutationInput, DirectoryUncheckedUpdateManyWithoutParentDirInput>
+  }
+
+  export type DirectoryScalarWhereInput = {
+    AND?: DirectoryScalarWhereInput | DirectoryScalarWhereInput[]
+    OR?: DirectoryScalarWhereInput[]
+    NOT?: DirectoryScalarWhereInput | DirectoryScalarWhereInput[]
+    id?: StringFilter<"Directory"> | string
+    name?: StringFilter<"Directory"> | string
+    createdAt?: DateTimeFilter<"Directory"> | Date | string
+    updatedAt?: DateTimeFilter<"Directory"> | Date | string
+    parentDirId?: StringNullableFilter<"Directory"> | string | null
+    createdBy?: StringFilter<"Directory"> | string
+    updatedBy?: StringFilter<"Directory"> | string
+  }
+
+  export type FileUpsertWithWhereUniqueWithoutParentDirInput = {
+    where: FileWhereUniqueInput
+    update: XOR<FileUpdateWithoutParentDirInput, FileUncheckedUpdateWithoutParentDirInput>
+    create: XOR<FileCreateWithoutParentDirInput, FileUncheckedCreateWithoutParentDirInput>
+  }
+
+  export type FileUpdateWithWhereUniqueWithoutParentDirInput = {
+    where: FileWhereUniqueInput
+    data: XOR<FileUpdateWithoutParentDirInput, FileUncheckedUpdateWithoutParentDirInput>
+  }
+
+  export type FileUpdateManyWithWhereWithoutParentDirInput = {
+    where: FileScalarWhereInput
+    data: XOR<FileUpdateManyMutationInput, FileUncheckedUpdateManyWithoutParentDirInput>
+  }
+
+  export type FileScalarWhereInput = {
+    AND?: FileScalarWhereInput | FileScalarWhereInput[]
+    OR?: FileScalarWhereInput[]
+    NOT?: FileScalarWhereInput | FileScalarWhereInput[]
+    id?: StringFilter<"File"> | string
+    name?: StringFilter<"File"> | string
+    resourcePath?: StringFilter<"File"> | string
+    size?: IntFilter<"File"> | number
+    contentType?: StringFilter<"File"> | string
+    metadata?: JsonFilter<"File">
+    createdAt?: DateTimeFilter<"File"> | Date | string
+    updatedAt?: DateTimeFilter<"File"> | Date | string
+    parentDirId?: StringFilter<"File"> | string
+    createdBy?: StringFilter<"File"> | string
+    updatedBy?: StringFilter<"File"> | string
+  }
+
+  export type DirectoryCreateWithoutChildFilesInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdBy: string
+    updatedBy: string
+    parentDir?: DirectoryCreateNestedOneWithoutChildDirsInput
+    childDirs?: DirectoryCreateNestedManyWithoutParentDirInput
+  }
+
+  export type DirectoryUncheckedCreateWithoutChildFilesInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    parentDirId?: string | null
+    createdBy: string
+    updatedBy: string
+    childDirs?: DirectoryUncheckedCreateNestedManyWithoutParentDirInput
+  }
+
+  export type DirectoryCreateOrConnectWithoutChildFilesInput = {
+    where: DirectoryWhereUniqueInput
+    create: XOR<DirectoryCreateWithoutChildFilesInput, DirectoryUncheckedCreateWithoutChildFilesInput>
+  }
+
+  export type DirectoryUpsertWithoutChildFilesInput = {
+    update: XOR<DirectoryUpdateWithoutChildFilesInput, DirectoryUncheckedUpdateWithoutChildFilesInput>
+    create: XOR<DirectoryCreateWithoutChildFilesInput, DirectoryUncheckedCreateWithoutChildFilesInput>
+    where?: DirectoryWhereInput
+  }
+
+  export type DirectoryUpdateToOneWithWhereWithoutChildFilesInput = {
+    where?: DirectoryWhereInput
+    data: XOR<DirectoryUpdateWithoutChildFilesInput, DirectoryUncheckedUpdateWithoutChildFilesInput>
+  }
+
+  export type DirectoryUpdateWithoutChildFilesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: StringFieldUpdateOperationsInput | string
+    updatedBy?: StringFieldUpdateOperationsInput | string
+    parentDir?: DirectoryUpdateOneWithoutChildDirsNestedInput
+    childDirs?: DirectoryUpdateManyWithoutParentDirNestedInput
+  }
+
+  export type DirectoryUncheckedUpdateWithoutChildFilesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    parentDirId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: StringFieldUpdateOperationsInput | string
+    updatedBy?: StringFieldUpdateOperationsInput | string
+    childDirs?: DirectoryUncheckedUpdateManyWithoutParentDirNestedInput
+  }
+
+  export type DirectoryCreateManyParentDirInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdBy: string
+    updatedBy: string
+  }
+
+  export type FileCreateManyParentDirInput = {
+    id?: string
+    name: string
+    resourcePath: string
+    size: number
+    contentType: string
+    metadata: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdBy: string
+    updatedBy: string
+  }
+
+  export type DirectoryUpdateWithoutParentDirInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: StringFieldUpdateOperationsInput | string
+    updatedBy?: StringFieldUpdateOperationsInput | string
+    childDirs?: DirectoryUpdateManyWithoutParentDirNestedInput
+    childFiles?: FileUpdateManyWithoutParentDirNestedInput
+  }
+
+  export type DirectoryUncheckedUpdateWithoutParentDirInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: StringFieldUpdateOperationsInput | string
+    updatedBy?: StringFieldUpdateOperationsInput | string
+    childDirs?: DirectoryUncheckedUpdateManyWithoutParentDirNestedInput
+    childFiles?: FileUncheckedUpdateManyWithoutParentDirNestedInput
+  }
+
+  export type DirectoryUncheckedUpdateManyWithoutParentDirInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: StringFieldUpdateOperationsInput | string
+    updatedBy?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FileUpdateWithoutParentDirInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    resourcePath?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    contentType?: StringFieldUpdateOperationsInput | string
+    metadata?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: StringFieldUpdateOperationsInput | string
+    updatedBy?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FileUncheckedUpdateWithoutParentDirInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    resourcePath?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    contentType?: StringFieldUpdateOperationsInput | string
+    metadata?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: StringFieldUpdateOperationsInput | string
+    updatedBy?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FileUncheckedUpdateManyWithoutParentDirInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    resourcePath?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    contentType?: StringFieldUpdateOperationsInput | string
+    metadata?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: StringFieldUpdateOperationsInput | string
+    updatedBy?: StringFieldUpdateOperationsInput | string
   }
 
 

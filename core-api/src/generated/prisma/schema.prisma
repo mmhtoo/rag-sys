@@ -14,7 +14,41 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Testing {
-  id      Int    @id @default(autoincrement())
-  message String
+model Directory {
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  parentDir   Directory?  @relation("ParentChild", fields: [parentDirId], references: [id])
+  parentDirId String?     @map("parent_dir_id")
+  childDirs   Directory[] @relation("ParentChild")
+  childFiles  File[]      @relation("Directory_Files")
+
+  createdBy String @map("created_by")
+  updatedBy String @map("updated_by")
+
+  @@index([name, createdAt, createdBy])
+  @@map("directories")
+}
+
+model File {
+  id           String @id @default(cuid())
+  name         String
+  resourcePath String @map("resource_path")
+  size         Int
+  contentType  String @map("content_type")
+  metadata     Json
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  parentDir   Directory? @relation("Directory_Files", fields: [parentDirId], references: [id])
+  parentDirId String     @map("parent_dir_id")
+
+  createdBy String @map("created_by")
+  updatedBy String @map("updated_by")
+
+  @@index([name, createdAt, createdBy, contentType])
+  @@map("files")
 }
