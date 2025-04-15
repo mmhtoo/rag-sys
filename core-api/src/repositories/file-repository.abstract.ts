@@ -9,6 +9,9 @@ export abstract class AbstractFileRepository {
   abstract getFileList(input: GetFileListInput): Promise<GetFileListResult>
   abstract updateFile(input: UpdateFileInput): Promise<UpdateFileResult>
   abstract deleteFile(input: DeleteFileInput): Promise<DeleteFileResult>
+  abstract countByParentDirId(
+    input: CountByParentDirIdInput,
+  ): Promise<CountByParentDirIdResult>
 }
 
 export interface CreateFileInput {
@@ -20,7 +23,7 @@ export interface CreateFileInput {
   parentDirId?: string
   createdBy: string
 }
-export interface CreateFileResult extends FileEntity {}
+export type CreateFileResult = FileEntity | null
 
 export interface GetFileDetailInput {
   id: string
@@ -37,6 +40,8 @@ export interface GetFileListInput {
   updatedBy?: string
   fromDate?: Date
   toDate?: Date
+  orderBy?: 'name' | 'createdAt' | 'updatedAt'
+  orderDirection?: 'asc' | 'desc'
 }
 export interface GetFileListResult {
   items: FileEntity[]
@@ -47,8 +52,10 @@ export interface GetFileListResult {
   }
 }
 
-export interface UpdateFileInput extends CreateFileInput {
+export interface UpdateFileInput
+  extends Partial<Omit<CreateFileInput, 'createdBy'>> {
   id: string
+  updatedBy: string
 }
 export type UpdateFileResult = void
 
@@ -56,3 +63,8 @@ export interface DeleteFileInput {
   id: string
 }
 export type DeleteFileResult = void
+
+export interface CountByParentDirIdInput {
+  parentDirId?: string
+}
+export type CountByParentDirIdResult = number

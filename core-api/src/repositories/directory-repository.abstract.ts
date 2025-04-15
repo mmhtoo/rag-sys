@@ -4,7 +4,7 @@ import type {DirectoryEntity} from '../entities'
 export abstract class AbstractDirectoryRepository {
   abstract createDirectory(
     input: CreateDirectoryInput,
-  ): Promise<CreateDirectoryResult>
+  ): Promise<CreateDirectoryResult | null>
   abstract getDirectoryDetail(
     input: GetDirectoryDetailInput,
   ): Promise<GetDirectoryDetailResult>
@@ -17,6 +17,9 @@ export abstract class AbstractDirectoryRepository {
   abstract deleteDirectory(
     input: DeleteDirectoryInput,
   ): Promise<DeleteDirectoryResult>
+  abstract countDirectory(
+    input: CountDirectoryInput,
+  ): Promise<CountDirectoryResult>
 }
 
 export interface CreateDirectoryInput {
@@ -24,7 +27,7 @@ export interface CreateDirectoryInput {
   parentDirId?: string
   createdBy: string
 }
-export interface CreateDirectoryResult extends DirectoryEntity {}
+export type CreateDirectoryResult = DirectoryEntity | null
 
 export interface GetDirectoryDetailInput {
   id: string
@@ -40,6 +43,8 @@ export interface GetDirectoryListInput {
   updatedBy?: string
   fromDate?: Date
   toDate?: Date
+  orderBy?: 'name' | 'createdAt' | 'updatedAt'
+  orderDirection?: 'asc' | 'desc'
 }
 export interface GetDirectoryListResult {
   items: DirectoryEntity[]
@@ -50,8 +55,10 @@ export interface GetDirectoryListResult {
   }
 }
 
-export interface UpdateDirectoryInput extends CreateDirectoryInput {
+export interface UpdateDirectoryInput
+  extends Partial<Omit<CreateDirectoryInput, 'createdBy'>> {
   id: string
+  updatedBy: string
 }
 
 export type UpdateDirectoryResult = void
@@ -60,3 +67,9 @@ export interface DeleteDirectoryInput {
   id: string
 }
 export type DeleteDirectoryResult = void
+
+export interface CountDirectoryInput {
+  parentDirId?: string
+}
+
+export type CountDirectoryResult = number

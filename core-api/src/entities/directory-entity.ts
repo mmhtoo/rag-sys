@@ -3,7 +3,7 @@ export interface DirectoryEntity {
   name: string
   createdAt: Date
   updatedAt: Date
-  parentDirId?: string
+  parentDirId: string | null
   createdBy: string
   updatedBy: string
 }
