@@ -65,7 +65,7 @@ export class PrismaDirectoryRepositoryImpl
           name: input.name,
           createdBy: input.createdBy,
           updatedBy: input.createdBy,
-          parentDirId: input.parentDirId,
+          parentDirId: input.parentDirId || null,
         },
       })
       makeLog(
@@ -130,7 +130,7 @@ export class PrismaDirectoryRepositoryImpl
       const pageSize = Number(input.pageSize || 10)
       const res = await this.prisma.directory.findMany({
         where: {
-          parentDirId: input.parentDirId,
+          parentDirId: input.parentDirId || null,
         },
         skip: pageIndex * pageSize,
         take: pageSize,
