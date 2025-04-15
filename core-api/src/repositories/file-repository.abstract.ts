@@ -32,7 +32,7 @@ export interface GetFileDetailInput {
 export type GetFileDetailResult = FileEntity | null
 
 export interface GetFileListInput {
-  parentDirId?: string
+  parentDirId?: string | null
   page?: number
   pageSize?: number
   name?: string
@@ -43,6 +43,7 @@ export interface GetFileListInput {
   toDate?: Date
   orderBy?: 'name' | 'createdAt' | 'updatedAt'
   orderDirection?: 'asc' | 'desc'
+  resourcePath?: string
 }
 export interface GetFileListResult {
   items: FileEntity[]
@@ -71,5 +72,9 @@ export interface CountByParentDirIdInput {
   parentDirId?: string | null
   excludeFileId?: string
   fileName?: string
+  contentType?: string
+  resourcePath?: string
+  fromDate?: Date
+  toDate?: Date
 }
 export type CountByParentDirIdResult = number

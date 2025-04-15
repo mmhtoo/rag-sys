@@ -4,10 +4,10 @@ import type {AbstractFileService} from '../../services'
 import {newFileServiceImpl} from '../../services/impl/file-service.impl'
 import {baseResponse, dataResponse, errorResponse, makeLog} from '../../helpers'
 import {StatusCodes} from 'http-status-codes'
-import type {CreateFileReqDto} from '../../validation-schemas/v1/file-schema'
-import type {AbstractBucketService} from '../../services/bucket-service.abstract'
-import {newBucketServiceImpl} from '../../services/impl/bucket-service.impl'
-import {env} from '../../configs'
+import type {
+  CreateFileReqDto,
+  GetFilesWithFilterReqDto,
+} from '../../validation-schemas/v1/file-schema'
 
 export class FileController {
   constructor(private readonly fileService: AbstractFileService) {}
@@ -48,9 +48,39 @@ export class FileController {
   }
 
   async handleGetFilesWithFilter(c: Context<BlankEnv, '/', BlankInput>) {
-    return c.json({
-      message: 'Get files with filter!',
-    })
+    try {
+      makeLog(
+        'info',
+        '===== handleGetFilesWithFilter with input ===== \n',
+        c.req.query(),
+      )
+      const queryPayload = c.req.query() as unknown as GetFilesWithFilterReqDto
+      const res = await this.fileService.getFileList({
+        page: Number(queryPayload.page),
+        pageSize: Number(queryPayload.pageSize),
+        name: queryPayload.name,
+        contentType: queryPayload.contentType,
+        createdBy: queryPayload.createdBy,
+        updatedBy: queryPayload.updatedBy,
+        fromDate: queryPayload.fromDate,
+        toDate: queryPayload.toDate,
+        orderBy: queryPayload.orderBy,
+        orderDirection: queryPayload.orderDirection,
+        parentDirId: queryPayload.parentDirId || null,
+        resourcePath: queryPayload.resourcePath,
+      })
+      c.status(StatusCodes.OK)
+      return c.json(dataResponse('Success!', res))
+    } catch (e) {
+      makeLog('error', '===== handleGetFilesWithFilter error =====', e)
+      c.status(500)
+      return c.json(
+        errorResponse(
+          'Something went wrong!',
+          (e as any)?.message || 'Internal Server Error!',
+        ),
+      )
+    }
   }
 
   async handleGetFileById(c: Context<BlankEnv, '/:id', BlankInput>) {

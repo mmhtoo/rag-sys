@@ -61,3 +61,50 @@ export const createFileSchema = z.object({
     ),
 })
 export type CreateFileReqDto = z.infer<typeof createFileSchema>
+
+export const getFilesWithFilterSchema = z.object({
+  name: z
+    .string({
+      invalid_type_error: 'Name is invalid!',
+    })
+    .optional(),
+  contentType: z
+    .string({
+      invalid_type_error: 'Content type is invalid!',
+    })
+    .optional(),
+  createdBy: z
+    .string({
+      invalid_type_error: 'Created by is invalid!',
+    })
+    .optional(),
+  updatedBy: z
+    .string({
+      invalid_type_error: 'Updated by is invalid!',
+    })
+    .optional(),
+  fromDate: z.date().optional(),
+  toDate: z.date().optional(),
+  orderBy: z.enum(['name', 'createdAt', 'updatedAt']).optional(),
+  orderDirection: z.enum(['asc', 'desc']).optional(),
+  parentDirId: z
+    .string({
+      invalid_type_error: 'Parent directory id is invalid!',
+    })
+    .optional(),
+  page: z
+    .string()
+    .regex(/^\d+$/, {
+      message: 'Must be a string of digits',
+    })
+    .optional()
+    .default('1'),
+  pageSize: z
+    .string()
+    .regex(/^\d+$/, {
+      message: 'Must be a string of digits',
+    })
+    .optional(),
+  resourcePath: z.string().optional(),
+})
+export type GetFilesWithFilterReqDto = z.infer<typeof getFilesWithFilterSchema>

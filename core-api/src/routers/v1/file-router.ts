@@ -1,13 +1,20 @@
 import {Hono} from 'hono'
 import {newFileController} from '../../controllers'
 import {zValidator} from '@hono/zod-validator'
-import {createFileSchema} from '../../validation-schemas/v1/file-schema'
+import {
+  createFileSchema,
+  getFilesWithFilterSchema,
+} from '../../validation-schemas/v1/file-schema'
 import {zodCallback} from '../../helpers'
 
 export const v1FileRouter = new Hono()
 const fileController = newFileController()
 
-v1FileRouter.get('/', (c) => fileController.handleGetFilesWithFilter(c))
+v1FileRouter.get(
+  '/',
+  zValidator('query', getFilesWithFilterSchema, zodCallback),
+  (c) => fileController.handleGetFilesWithFilter(c),
+)
 v1FileRouter.post('/', zValidator('form', createFileSchema, zodCallback), (c) =>
   fileController.handleUploadFile(c),
 )

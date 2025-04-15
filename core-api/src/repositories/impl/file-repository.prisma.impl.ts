@@ -34,6 +34,17 @@ export class PrismaFileRepositoryImpl implements AbstractFileRepository {
           parentDirId: input.parentDirId,
           name: input.fileName,
           id: {not: input.excludeFileId},
+          contentType: input.contentType,
+          createdAt:
+            input.fromDate && input.toDate
+              ? {
+                  gte: input.fromDate,
+                  lte: input.toDate,
+                }
+              : input.fromDate && !input.toDate
+              ? {gte: input.fromDate}
+              : {},
+          resourcePath: input.resourcePath,
         },
       })
       makeLog(
@@ -133,15 +144,31 @@ export class PrismaFileRepositoryImpl implements AbstractFileRepository {
         '===== started get file list repo with input ===== \n',
         JSON.stringify(input, null, 2),
       )
+      const filterParam = {
+        parentDirId: input.parentDirId || null,
+        name: input.name,
+        contentType: input.contentType,
+        createdBy: input.createdBy,
+        updatedBy: input.updatedBy,
+        createdAt:
+          input.fromDate && input.toDate
+            ? {
+                gte: input.fromDate,
+                lte: input.toDate,
+              }
+            : input.fromDate && !input.toDate
+            ? {gte: input.fromDate}
+            : {},
+        resourcePath: input.resourcePath,
+      }
       const total = await this.countByParentDirId({
-        parentDirId: input.parentDirId,
+        ...filterParam,
+        fileName: input.name,
       })
       const pageIndex = Number(input.page || 1) - 1
       const pageSize = Number(input.pageSize || 10)
       const res = await this.prisma.file.findMany({
-        where: {
-          parentDirId: input.parentDirId,
-        },
+        where: filterParam,
         skip: pageIndex * pageSize,
         take: pageSize,
         orderBy: {
