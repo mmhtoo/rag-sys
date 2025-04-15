@@ -15,6 +15,7 @@ import type {
   UploadFileResult,
 } from '../bucket-repository.abstract'
 import {makeLog} from '../../helpers'
+import {supabase} from '../../libs'
 
 export class SupabaseBucketRepositoryImpl implements AbstractBucketRepository {
   constructor(private readonly supabase: SupabaseClient) {}
@@ -163,4 +164,8 @@ export class SupabaseBucketRepositoryImpl implements AbstractBucketRepository {
       throw e
     }
   }
+}
+
+export function newSupabaseBucketRepositoryImpl() {
+  return new SupabaseBucketRepositoryImpl(supabase)
 }

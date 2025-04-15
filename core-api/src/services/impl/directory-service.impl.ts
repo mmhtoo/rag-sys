@@ -35,7 +35,7 @@ export class DirectoryServiceImpl implements AbstractDirectoryService {
       if (countWithSameName > 0) {
         throw new Error('Directory with same name already exists!')
       }
-      let pathname = `/${input.name}`
+      let pathname = `${input.name}`
       if (input.parentDirId) {
         const parentDir = await this.getDirectoryDetail({
           id: input.parentDirId,
@@ -131,7 +131,7 @@ export class DirectoryServiceImpl implements AbstractDirectoryService {
       if (countWithSameName > 0) {
         throw new Error('Directory with same name already exists!')
       }
-      let pathname = `/${input.name}`
+      let pathname = `${input.name}`
       if (input.parentDirId) {
         const parentDir = await this.getDirectoryDetail({
           id: input.parentDirId,

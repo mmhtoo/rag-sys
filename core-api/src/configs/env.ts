@@ -7,5 +7,7 @@ export const env = {
   DISABLED_LOGGING: process.env.DISABLED_LOGGING === 'true' || false,
   SUPABASE_URL: process.env.SUPABASE_URL || '',
   SUPABASE_KEY: process.env.SUPABASE_KEY || '',
-  DEFAULT_BUCKET_NAME: process.env.DEFAULT_BUCKET_NAME || 'rag-sys',
+  DEFAULT_BUCKET_NAME: process.env.DEFAULT_BUCKET_NAME || 'rag-bucket',
+  ALLOWED_FILE_TYPES: process.env.ALLOWED_FILE_TYPES || '',
+  MAX_FILE_SIZE: Number(process.env.MAX_FILE_SIZE) || 3145728,
 }

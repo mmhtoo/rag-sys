@@ -29,7 +29,9 @@ export abstract class AbstractFileService {
   ): Promise<CountByParentDirIdResultDto>
 }
 
-export interface CreateFileInputDto extends CreateFileInput {}
+export interface CreateFileInputDto extends CreateFileInput {
+  file: File
+}
 export type CreateFileResultDto = CreateFileResult
 
 export interface GetFileDetailInputDto extends GetFileDetailInput {}
@@ -38,7 +40,9 @@ export type GetFileDetailResultDto = GetFileDetailResult
 export interface GetFileListInputDto extends GetFileListInput {}
 export type GetFileListResultDto = GetFileListResult
 
-export interface UpdateFileInputDto extends UpdateFileInput {}
+export interface UpdateFileInputDto extends UpdateFileInput {
+  file: File
+}
 export type UpdateFileResultDto = UpdateFileResult
 
 export interface DeleteFileInputDto extends DeleteFileInput {}

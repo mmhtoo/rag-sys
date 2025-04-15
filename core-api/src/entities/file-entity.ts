@@ -7,7 +7,16 @@ export interface FileEntity {
   metadata: string
   createdAt: Date
   updatedAt: Date
-  parentDirId?: string
+  parentDirId?: string | null
   createdBy: string
   updatedBy: string
+  status:
+    | 'upload_queued'
+    | 'upload_failed'
+    | 'upload_completed'
+    | 'sync_queued'
+    | 'sync_failed'
+    | 'sync_completed'
+    | 'unknown'
+    | null
 }

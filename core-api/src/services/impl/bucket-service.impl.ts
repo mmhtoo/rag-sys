@@ -1,19 +1,20 @@
 import {makeLog} from '../../helpers'
 import type {AbstractBucketRepository} from '../../repositories/bucket-repository.abstract'
-import type {
+import {newSupabaseBucketRepositoryImpl} from '../../repositories/impl/bucket-repository.supabase.impl'
+import {
   AbstractBucketService,
-  CreateBucketInputDto,
-  CreateBucketResultDto,
-  DeleteBucketInputDto,
-  DeleteBucketResultDto,
-  DeleteFileInputDto,
-  DeleteFilesInputDto,
-  DeleteFilesResultDto,
-  GetSignedUrlInputDto,
-  GetSignedUrlResultDto,
-  GetSignedUrlsInputDto,
-  UploadFileInputDto,
-  UploadFileResultDto,
+  type CreateBucketInputDto,
+  type CreateBucketResultDto,
+  type DeleteBucketInputDto,
+  type DeleteBucketResultDto,
+  type DeleteFileInputDto,
+  type DeleteFilesInputDto,
+  type DeleteFilesResultDto,
+  type GetSignedUrlInputDto,
+  type GetSignedUrlResultDto,
+  type GetSignedUrlsInputDto,
+  type UploadFileInputDto,
+  type UploadFileResultDto,
 } from '../bucket-service.abstract'
 
 export class BucketServiceImpl implements AbstractBucketService {
@@ -132,4 +133,8 @@ export class BucketServiceImpl implements AbstractBucketService {
       throw e
     }
   }
+}
+
+export function newBucketServiceImpl() {
+  return new BucketServiceImpl(newSupabaseBucketRepositoryImpl())
 }

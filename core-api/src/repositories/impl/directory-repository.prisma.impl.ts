@@ -15,6 +15,7 @@ import type {
   UpdateDirectoryResult,
 } from '../directory-repository.abstract'
 import {getTotalPageCount, makeLog} from '../../helpers'
+import {prismaClient} from '../../libs'
 
 export class PrismaDirectoryRepositoryImpl
   implements AbstractDirectoryRepository
@@ -246,6 +247,6 @@ export class PrismaDirectoryRepositoryImpl
   }
 }
 
-export function newPrismaDirectoryRepositoryImpl(prisma: PrismaClient) {
-  return new PrismaDirectoryRepositoryImpl(prisma)
+export function newPrismaDirectoryRepositoryImpl() {
+  return new PrismaDirectoryRepositoryImpl(prismaClient)
 }

@@ -1,11 +1,16 @@
 import {Hono} from 'hono'
 import {newFileController} from '../../controllers'
+import {zValidator} from '@hono/zod-validator'
+import {createFileSchema} from '../../validation-schemas/v1/file-schema'
+import {zodCallback} from '../../helpers'
 
 export const v1FileRouter = new Hono()
 const fileController = newFileController()
 
-v1FileRouter.get('/', fileController.handleGetFilesWithFilter)
-v1FileRouter.post('/', fileController.handleUploadFileorFiles)
-v1FileRouter.get('/:id', fileController.handleGetFileById)
-v1FileRouter.delete('/:id', fileController.handleDeleteById)
-v1FileRouter.put('/:id', fileController.handleUpdateById)
+v1FileRouter.get('/', (c) => fileController.handleGetFilesWithFilter(c))
+v1FileRouter.post('/', zValidator('form', createFileSchema, zodCallback), (c) =>
+  fileController.handleUploadFile(c),
+)
+v1FileRouter.get('/:id', (c) => fileController.handleGetFileById(c))
+v1FileRouter.delete('/:id', (c) => fileController.handleDeleteById(c))
+v1FileRouter.put('/:id', (c) => fileController.handleUpdateById(c))

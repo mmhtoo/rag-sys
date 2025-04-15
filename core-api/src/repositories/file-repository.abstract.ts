@@ -22,13 +22,14 @@ export interface CreateFileInput {
   metadata: string
   parentDirId?: string
   createdBy: string
+  status?: FileEntity['status']
 }
 export type CreateFileResult = FileEntity | null
 
 export interface GetFileDetailInput {
   id: string
 }
-export interface GetFileDetailResult extends FileEntity {}
+export type GetFileDetailResult = FileEntity | null
 
 export interface GetFileListInput {
   parentDirId?: string
@@ -62,9 +63,13 @@ export type UpdateFileResult = void
 export interface DeleteFileInput {
   id: string
 }
-export type DeleteFileResult = void
+export type DeleteFileResult = {
+  resourcePath?: string
+}
 
 export interface CountByParentDirIdInput {
-  parentDirId?: string
+  parentDirId?: string | null
+  excludeFileId?: string
+  fileName?: string
 }
 export type CountByParentDirIdResult = number

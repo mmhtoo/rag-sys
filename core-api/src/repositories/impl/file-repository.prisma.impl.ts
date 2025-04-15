@@ -1,4 +1,4 @@
-import type {PrismaClient} from '@prisma/client'
+import {Prisma, type PrismaClient} from '@prisma/client'
 import type {
   AbstractFileRepository,
   CountByParentDirIdInput,
@@ -15,6 +15,7 @@ import type {
   UpdateFileResult,
 } from '../file-repository.abstract'
 import {getTotalPageCount, makeLog} from '../../helpers'
+import {prismaClient} from '../../libs'
 
 export class PrismaFileRepositoryImpl implements AbstractFileRepository {
   constructor(private readonly prisma: PrismaClient) {}
@@ -31,6 +32,8 @@ export class PrismaFileRepositoryImpl implements AbstractFileRepository {
       const res = await this.prisma.file.count({
         where: {
           parentDirId: input.parentDirId,
+          name: input.fileName,
+          id: {not: input.excludeFileId},
         },
       })
       makeLog(
@@ -66,6 +69,7 @@ export class PrismaFileRepositoryImpl implements AbstractFileRepository {
           createdBy: input.createdBy,
           updatedBy: input.createdBy,
           parentDirId: input.parentDirId,
+          status: input.status,
         },
       })
       makeLog(
@@ -106,7 +110,12 @@ export class PrismaFileRepositoryImpl implements AbstractFileRepository {
         '===== finished get file detail repo with result ===== \n',
         JSON.stringify(res, null, 2),
       )
-      throw res
+      return res
+        ? {
+            ...res,
+            metadata: JSON.stringify(res.metadata),
+          }
+        : null
     } catch (e) {
       makeLog(
         'error',
@@ -184,6 +193,7 @@ export class PrismaFileRepositoryImpl implements AbstractFileRepository {
           metadata: input.metadata,
           updatedBy: input.updatedBy,
           parentDirId: input.parentDirId,
+          status: input.status,
         },
         select: {},
       })
@@ -214,14 +224,22 @@ export class PrismaFileRepositoryImpl implements AbstractFileRepository {
         where: {
           id: input.id,
         },
+        select: {
+          resourcePath: true,
+        },
       })
       makeLog(
         'info',
         '===== finished delete file repo with result ===== \n',
         JSON.stringify(res, null, 2),
       )
-      return
+      return res
     } catch (e) {
+      if (e instanceof Prisma.PrismaClientKnownRequestError) {
+        if (e.code === 'P2025') {
+          throw new Error('File was not found to delete!')
+        }
+      }
       makeLog(
         'error',
         '===== failed delete file repo with error ===== \n',
@@ -232,6 +250,6 @@ export class PrismaFileRepositoryImpl implements AbstractFileRepository {
   }
 }
 
-export function newPrismaFileRepositoryImpl(prisma: PrismaClient) {
-  return new PrismaFileRepositoryImpl(prisma)
+export function newPrismaFileRepositoryImpl() {
+  return new PrismaFileRepositoryImpl(prismaClient)
 }
