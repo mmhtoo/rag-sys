@@ -103,7 +103,7 @@ export class PrismaDirectoryRepositoryImpl
         '===== finished get directory detail repo with result ===== \n',
         JSON.stringify(res, null, 2),
       )
-      throw res
+      return res
     } catch (e) {
       makeLog(
         'error',
@@ -165,6 +165,14 @@ export class PrismaDirectoryRepositoryImpl
         '===== started update directory repo with input ===== \n',
         JSON.stringify(input, null, 2),
       )
+      const count = await this.prisma.directory.count({
+        where: {
+          id: input.id,
+        },
+      })
+      if (count === 0) {
+        return null
+      }
       const res = await this.prisma.directory.update({
         where: {
           id: input.id,
@@ -174,14 +182,16 @@ export class PrismaDirectoryRepositoryImpl
           updatedBy: input.updatedBy,
           parentDirId: input.parentDirId,
         },
-        select: {},
+        select: {
+          id: true,
+        },
       })
       makeLog(
         'info',
         '===== finished update directory repo with result ===== \n',
         JSON.stringify(res, null, 2),
       )
-      return
+      return res
     } catch (e) {
       makeLog(
         'error',

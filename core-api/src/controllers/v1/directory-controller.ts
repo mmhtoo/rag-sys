@@ -9,8 +9,9 @@ import {prismaClient} from '../../libs'
 import type {
   CreateDirectoryReqDto,
   GetDirectoryFilterReqDto,
+  UpdateDirectoryReqDto,
 } from '../../validation-schemas/v1'
-import {dataResponse, errorResponse, makeLog} from '../../helpers'
+import {baseResponse, dataResponse, errorResponse, makeLog} from '../../helpers'
 import {StatusCodes} from 'http-status-codes'
 
 export class DirectoryController {
@@ -24,8 +25,6 @@ export class DirectoryController {
         '===== started get directories with filter ===== \n',
         JSON.stringify(queryBody, null, 2),
       )
-      // just simulation before IAM
-      const userId = c.req.header('x-user-id') || 'ADMIN'
       const res = await this.directoryService.getDirectoryList({
         ...queryBody,
         page: Number(queryBody.page),
@@ -64,7 +63,6 @@ export class DirectoryController {
         '===== started create directory controller with input ===== \n',
         JSON.stringify(reqBody, null, 2),
       )
-      console.log(this)
       // just simulation before IAM
       const userId = c.req.header('x-user-id') || 'ADMIN'
       const res = await this.directoryService.createDirectory({
@@ -97,21 +95,99 @@ export class DirectoryController {
   }
 
   async handleGetDirectoryById(c: Context<BlankEnv, '/:id', BlankInput>) {
-    return c.json({
-      message: 'Get Detail directory!',
-    })
+    try {
+      const id = c.req.param('id')
+      makeLog('info', '===== handleGetDirectoryById with input ===== \n', id)
+      const res = await this.directoryService.getDirectoryDetail({
+        id,
+      })
+      makeLog(
+        'info',
+        '===== handleGetDirectoryById finished with result ===== \n',
+        JSON.stringify(res, null, 2),
+      )
+      if (!res) {
+        c.status(StatusCodes.NOT_FOUND)
+        return c.json(errorResponse('Directory not found!', 'Not Found!'))
+      }
+      return c.json(dataResponse('Directory found!', res))
+    } catch (e) {
+      makeLog(
+        'error',
+        '===== handleGetDirectoryById error =====',
+        JSON.stringify(e, null, 2),
+      )
+      c.status(500)
+      return c.json(
+        errorResponse(
+          'Something went wrong!',
+          (e as any)?.message || 'Internal Server Error!',
+        ),
+      )
+    }
   }
 
   async handleDeleteById(c: Context<BlankEnv, '/:id', BlankInput>) {
-    return c.json({
-      message: 'Delete directory',
-    })
+    try {
+      const id = c.req.param('id')
+      makeLog('info', '===== handleDeleteById with input ===== \n', id)
+      await this.directoryService.deleteDirectory({
+        id,
+      })
+      makeLog('info', '===== handleDeleteById finished ===== \n')
+      return c.json(baseResponse('Directory deleted!'))
+    } catch (e) {
+      makeLog(
+        'error',
+        '===== handleDeleteById error =====',
+        JSON.stringify(e, null, 2),
+      )
+      c.status(500)
+      return c.json(
+        errorResponse(
+          'Something went wrong!',
+          (e as any)?.message || 'Internal Server Error!',
+        ),
+      )
+    }
   }
 
   async handleUpdateById(c: Context<BlankEnv, '/:id', BlankInput>) {
-    return c.json({
-      message: 'Update directory!',
-    })
+    try {
+      const id = c.req.param('id')
+      makeLog('info', '===== handleUpdateById with input ===== \n', id)
+      const reqBody = await c.req.json<UpdateDirectoryReqDto>()
+      // just simulation before IAM
+      const userId = c.req.header('x-user-id') || 'ADMIN'
+      const res = await this.directoryService.updateDirectory({
+        id,
+        ...reqBody,
+        updatedBy: userId,
+      })
+      if (!res || !res.id) {
+        c.status(StatusCodes.NOT_FOUND)
+        return c.json(errorResponse('Directory not found!', 'Not Found!'))
+      }
+      makeLog(
+        'info',
+        '===== handleUpdateById finished ===== \n',
+        JSON.stringify(res, null, 2),
+      )
+      return c.json(baseResponse('Directory updated!'))
+    } catch (e) {
+      makeLog(
+        'error',
+        '===== handleUpdateById error =====',
+        JSON.stringify(e, null, 2),
+      )
+      c.status(500)
+      return c.json(
+        errorResponse(
+          'Something went wrong!',
+          (e as any)?.message || 'Internal Server Error!',
+        ),
+      )
+    }
   }
 }
 

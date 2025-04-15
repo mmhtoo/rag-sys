@@ -20,6 +20,10 @@ v1DirectoryRouter.post(
   zValidator('json', createDirectorySchema, zodCallback),
   (c) => v1DirectoryController.handleCreateDirectory(c),
 )
-v1DirectoryRouter.get('/:id', v1DirectoryController.handleGetDirectoryById)
-v1DirectoryRouter.delete('/:id', v1DirectoryController.handleDeleteById)
-v1DirectoryRouter.put('/:id', v1DirectoryController.handleUpdateById)
+v1DirectoryRouter.get('/:id', (c) =>
+  v1DirectoryController.handleGetDirectoryById(c),
+)
+v1DirectoryRouter.delete('/:id', (c) =>
+  v1DirectoryController.handleDeleteById(c),
+)
+v1DirectoryRouter.put('/:id', (c) => v1DirectoryController.handleUpdateById(c))

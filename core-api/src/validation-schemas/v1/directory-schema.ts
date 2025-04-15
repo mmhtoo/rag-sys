@@ -42,3 +42,19 @@ export const getDirectoryFilterSchema = z.object({
     .default('10'),
 })
 export type GetDirectoryFilterReqDto = z.infer<typeof getDirectoryFilterSchema>
+
+// update directory scheam
+export const updateDirectorySchema = z.object({
+  name: z
+    .string({
+      required_error: 'Name is required!',
+    })
+    .min(1, {message: 'Name must be at least 1 characters long!'})
+    .max(100, {message: 'Name must be at most 100 characters long!'}),
+  parentDirId: z
+    .string({
+      invalid_type_error: 'Parent directory id is invalid!',
+    })
+    .optional(),
+})
+export type UpdateDirectoryReqDto = z.infer<typeof updateDirectorySchema>

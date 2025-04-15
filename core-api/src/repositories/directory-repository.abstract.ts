@@ -32,7 +32,7 @@ export type CreateDirectoryResult = DirectoryEntity | null
 export interface GetDirectoryDetailInput {
   id: string
 }
-export interface GetDirectoryDetailResult extends DirectoryEntity {}
+export type GetDirectoryDetailResult = DirectoryEntity | null
 
 export interface GetDirectoryListInput {
   parentDirId?: string
@@ -61,7 +61,7 @@ export interface UpdateDirectoryInput
   updatedBy: string
 }
 
-export type UpdateDirectoryResult = void
+export type UpdateDirectoryResult = Pick<DirectoryEntity, 'id'> | null
 
 export interface DeleteDirectoryInput {
   id: string

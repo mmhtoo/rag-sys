@@ -20,7 +20,7 @@ model Directory {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  parentDir Directory? @relation("ParentChild", fields: [parentDirId], references: [id])
+  parentDir Directory? @relation("ParentChild", fields: [parentDirId], references: [id], onDelete: Cascade)
   parentDirId String? @map("parent_dir_id")
   childDirs Directory[] @relation("ParentChild")
   childFiles File[] @relation("Directory_Files")
