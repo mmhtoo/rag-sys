@@ -10,6 +10,7 @@ export abstract class AbstractBucketRepository {
   abstract getSignedUrls(
     input: GetSignedUrlsInput,
   ): Promise<GetSignedUrlResult[]>
+  abstract copyFile(input: CopyFileInput): Promise<CopyFileResult>
 }
 
 export interface CreateBucketInput {
@@ -76,3 +77,11 @@ export interface GetSignedUrlResult {
   signedUrl: string
   expiresIn: number
 }
+
+export interface CopyFileInput {
+  sourcePath: string
+  targetPath: string
+  bucketName: string
+}
+
+export type CopyFileResult = void

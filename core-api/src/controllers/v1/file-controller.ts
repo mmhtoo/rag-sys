@@ -7,6 +7,7 @@ import {StatusCodes} from 'http-status-codes'
 import type {
   CreateFileReqDto,
   GetFilesWithFilterReqDto,
+  UpdateFileReqDto,
 } from '../../validation-schemas/v1/file-schema'
 
 export class FileController {
@@ -135,9 +136,31 @@ export class FileController {
   }
 
   async handleUpdateById(c: Context<BlankEnv, '/:id', BlankInput>) {
-    return c.json({
-      message: 'Update file!',
-    })
+    try {
+      const id = c.req.param('id')
+      const reqBody = (await c.req.parseBody()) as unknown as UpdateFileReqDto
+      const userId = c.req.header('x-user-id') || 'default'
+      makeLog('info', '===== handleUpdateById with input ===== \n', id)
+      await this.fileService.updateFile({
+        id,
+        name: reqBody.name,
+        metadata: reqBody.metadata,
+        parentDirId: reqBody.parentDirId,
+        file: reqBody.file,
+        updatedBy: userId,
+      })
+      c.status(StatusCodes.OK)
+      return c.json(baseResponse('Successfully updated!'))
+    } catch (e) {
+      makeLog('error', '===== handleUpdateById error =====', e)
+      c.status(500)
+      return c.json(
+        errorResponse(
+          'Something went wrong!',
+          (e as any)?.message || 'Internal Server Error!',
+        ),
+      )
+    }
   }
 }
 

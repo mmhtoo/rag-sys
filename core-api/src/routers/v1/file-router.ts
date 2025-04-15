@@ -4,6 +4,7 @@ import {zValidator} from '@hono/zod-validator'
 import {
   createFileSchema,
   getFilesWithFilterSchema,
+  updateFileSchema,
 } from '../../validation-schemas/v1/file-schema'
 import {zodCallback} from '../../helpers'
 
@@ -20,4 +21,8 @@ v1FileRouter.post('/', zValidator('form', createFileSchema, zodCallback), (c) =>
 )
 v1FileRouter.get('/:id', (c) => fileController.handleGetFileById(c))
 v1FileRouter.delete('/:id', (c) => fileController.handleDeleteById(c))
-v1FileRouter.put('/:id', (c) => fileController.handleUpdateById(c))
+v1FileRouter.put(
+  '/:id',
+  zValidator('form', updateFileSchema, zodCallback),
+  (c) => fileController.handleUpdateById(c),
+)

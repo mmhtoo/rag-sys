@@ -5,7 +5,6 @@ import {
   type AbstractDirectoryRepository,
 } from '../../repositories'
 import {newDirectoryServiceImpl} from '../../services/impl/directory-service.impl'
-import {prismaClient} from '../../libs'
 import type {
   CreateDirectoryReqDto,
   GetDirectoryFilterReqDto,
@@ -193,6 +192,6 @@ export class DirectoryController {
 
 export function newDirectoryController() {
   return new DirectoryController(
-    newDirectoryServiceImpl(newPrismaDirectoryRepositoryImpl(prismaClient)),
+    newDirectoryServiceImpl(newPrismaDirectoryRepositoryImpl()),
   )
 }

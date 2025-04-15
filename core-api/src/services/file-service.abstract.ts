@@ -41,7 +41,7 @@ export interface GetFileListInputDto extends GetFileListInput {}
 export type GetFileListResultDto = GetFileListResult
 
 export interface UpdateFileInputDto extends UpdateFileInput {
-  file: File
+  file?: File | null
 }
 export type UpdateFileResultDto = UpdateFileResult
 

@@ -1,6 +1,8 @@
 import type {SupabaseClient} from '@supabase/supabase-js'
 import type {
   AbstractBucketRepository,
+  CopyFileInput,
+  CopyFileResult,
   CreateBucketInput,
   CreateBucketResult,
   DeleteBucketInput,
@@ -19,6 +21,20 @@ import {supabase} from '../../libs'
 
 export class SupabaseBucketRepositoryImpl implements AbstractBucketRepository {
   constructor(private readonly supabase: SupabaseClient) {}
+
+  async copyFile(input: CopyFileInput): Promise<CopyFileResult> {
+    try {
+      makeLog('info', '===== copyFile repo =====', input)
+      const res = await this.supabase.storage
+        .from(input.bucketName)
+        .copy(input.sourcePath, input.targetPath)
+      makeLog('info', '===== copyFile repo =====', res)
+      return
+    } catch (e) {
+      makeLog('error', '===== copyFile repo =====', e)
+      throw e
+    }
+  }
 
   async createBucket(input: CreateBucketInput): Promise<CreateBucketResult> {
     try {

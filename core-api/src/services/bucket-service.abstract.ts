@@ -12,6 +12,8 @@ import type {
   DeleteFilesInput,
   DeleteFileResult,
   GetSignedUrlResult,
+  CopyFileInput,
+  CopyFileResult,
 } from '../repositories/bucket-repository.abstract'
 
 // abstraction for bucket service
@@ -36,6 +38,7 @@ export abstract class AbstractBucketService {
   abstract getSignedUrls(
     input: GetSignedUrlsInputDto,
   ): Promise<GetSignedUrlResultDto[]>
+  abstract copyFile(input: CopyFileInputDto): Promise<CopyFileResultDto>
 }
 
 export interface CreateBucketInputDto extends CreateBucketInput {}
@@ -57,3 +60,6 @@ export interface GetSignedUrlInputDto extends GetSignedUrlInput {}
 export interface GetSignedUrlsInputDto extends GetSignedUrlsInput {}
 
 export interface GetSignedUrlResultDto extends GetSignedUrlResult {}
+
+export interface CopyFileInputDto extends CopyFileInput {}
+export type CopyFileResultDto = CopyFileResult

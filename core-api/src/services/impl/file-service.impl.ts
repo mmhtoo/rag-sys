@@ -146,6 +146,19 @@ export class FileServiceImpl implements AbstractFileService {
       if (countWithSameName > 0) {
         throw new Error('File with same name already exists!')
       }
+      const fileDetail = await this.getFileDetail({
+        id: input.id,
+      })
+
+      if (
+        fileDetail?.name == input.name &&
+        input.parentDirId == fileDetail?.parentDirId &&
+        !input.file &&
+        input.metadata === fileDetail?.metadata
+      ) {
+        throw new Error('No changes!')
+      }
+
       let newPath = `${input.name}`
       if (input.parentDirId) {
         const parentDir = await this.directoryService.getDirectoryDetail({
@@ -153,16 +166,15 @@ export class FileServiceImpl implements AbstractFileService {
         })
         if (parentDir) newPath = `${parentDir.pathname}/${input.name}`
       }
-      const fileDetail = await this.getFileDetail({
-        id: input.id,
-      })
-      const oldResourcePath = fileDetail?.resourcePath
 
       const res = await this.fileRepo.updateFile({
         ...input,
         resourcePath: newPath,
       })
-      if (oldResourcePath !== newPath) {
+
+      const oldResourcePath = fileDetail?.resourcePath
+      // changed file and path
+      if (oldResourcePath !== newPath && input.file) {
         const promises = [
           this.bucketService.deleteFile({
             path: oldResourcePath || '',
@@ -176,6 +188,19 @@ export class FileServiceImpl implements AbstractFileService {
         ]
         await Promise.all(promises)
       }
+      // just name change
+      if (oldResourcePath !== newPath && !input.file) {
+        await this.bucketService.copyFile({
+          sourcePath: oldResourcePath || '',
+          targetPath: newPath,
+          bucketName: env.DEFAULT_BUCKET_NAME,
+        })
+        await this.bucketService.deleteFile({
+          path: oldResourcePath || '',
+          bucketName: env.DEFAULT_BUCKET_NAME,
+        })
+      }
+
       makeLog(
         'info',
         'finished update file service with result',

@@ -3,6 +3,8 @@ import type {AbstractBucketRepository} from '../../repositories/bucket-repositor
 import {newSupabaseBucketRepositoryImpl} from '../../repositories/impl/bucket-repository.supabase.impl'
 import {
   AbstractBucketService,
+  type CopyFileInputDto,
+  type CopyFileResultDto,
   type CreateBucketInputDto,
   type CreateBucketResultDto,
   type DeleteBucketInputDto,
@@ -19,6 +21,18 @@ import {
 
 export class BucketServiceImpl implements AbstractBucketService {
   constructor(private readonly bucketRepo: AbstractBucketRepository) {}
+
+  async copyFile(input: CopyFileInputDto): Promise<CopyFileResultDto> {
+    try {
+      makeLog('info', '===== copyFile with input =====', input)
+      const res = await this.bucketRepo.copyFile(input)
+      makeLog('info', '===== copyFile finished =====', res)
+      return res
+    } catch (e) {
+      makeLog('error', '===== copyFile error =====', e)
+      throw e
+    }
+  }
 
   async createBucket(
     input: CreateBucketInputDto,

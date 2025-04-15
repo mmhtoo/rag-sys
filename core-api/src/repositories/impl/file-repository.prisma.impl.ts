@@ -222,7 +222,6 @@ export class PrismaFileRepositoryImpl implements AbstractFileRepository {
           parentDirId: input.parentDirId,
           status: input.status,
         },
-        select: {},
       })
       makeLog(
         'info',
