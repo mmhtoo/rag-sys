@@ -4,7 +4,7 @@ export abstract class AbstractBucketRepository {
   abstract deleteBucket(input: DeleteBucketInput): Promise<DeleteBucketResult>
   abstract uploadFile(input: UploadFileInput): Promise<UploadFileResult>
   abstract uploadFiles(input: UploadFileInput[]): Promise<UploadFileResult[]>
-  abstract deleteFile(input: DeleteFileInput): Promise<DeleteFilesResult>
+  abstract deleteFile(input: DeleteFileInput): Promise<DeleteFileResult>
   abstract deleteFiles(input: DeleteFilesInput): Promise<DeleteFilesResult>
   abstract getSignedUrl(input: GetSignedUrlInput): Promise<GetSignedUrlResult>
   abstract getSignedUrls(
