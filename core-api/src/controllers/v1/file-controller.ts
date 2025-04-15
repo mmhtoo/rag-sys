@@ -1,8 +1,12 @@
 import type {Context} from 'hono'
 import type {BlankEnv, BlankInput} from 'hono/types'
+import type {AbstractFileService} from '../../services'
+import {newFileServiceImpl} from '../../services/impl/file-service.impl'
+import {newPrismaFileRepositoryImpl} from '../../repositories'
+import {prismaClient} from '../../libs'
 
 export class FileController {
-  constructor() {}
+  constructor(private readonly fileService: AbstractFileService) {}
 
   async handleUploadFileorFiles(c: Context<BlankEnv, '/', BlankInput>) {
     return c.json({
@@ -36,5 +40,7 @@ export class FileController {
 }
 
 export function newFileController() {
-  return new FileController()
+  return new FileController(
+    newFileServiceImpl(newPrismaFileRepositoryImpl(prismaClient)),
+  )
 }

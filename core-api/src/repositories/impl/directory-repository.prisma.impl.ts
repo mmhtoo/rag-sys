@@ -222,3 +222,7 @@ export class PrismaDirectoryRepositoryImpl
     }
   }
 }
+
+export function newPrismaDirectoryRepositoryImpl(prisma: PrismaClient) {
+  return new PrismaDirectoryRepositoryImpl(prisma)
+}
