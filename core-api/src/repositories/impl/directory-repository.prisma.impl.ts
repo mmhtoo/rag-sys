@@ -68,6 +68,7 @@ export class PrismaDirectoryRepositoryImpl
           createdBy: input.createdBy,
           updatedBy: input.createdBy,
           parentDirId: input.parentDirId || null,
+          pathname: input.pathname || '/',
         },
       })
       makeLog(

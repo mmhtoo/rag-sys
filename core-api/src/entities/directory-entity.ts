@@ -6,4 +6,5 @@ export interface DirectoryEntity {
   parentDirId: string | null
   createdBy: string
   updatedBy: string
+  pathname: string | null
 }

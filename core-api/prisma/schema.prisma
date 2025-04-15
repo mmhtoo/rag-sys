@@ -28,8 +28,20 @@ model Directory {
   createdBy String @map("created_by")
   updatedBy String @map("updated_by")
 
-  @@index([name, createdAt, createdBy])
+  pathname String? @default("/")
+
+  @@index([name, createdAt, createdBy,pathname])
   @@map("directories")
+}
+
+enum FileStatus {
+  upload_queued
+  upload_failed
+  upload_completed
+  sync_queued
+  sync_failed
+  sync_completed
+  unknown
 }
 
 model File {
@@ -48,6 +60,8 @@ model File {
 
   createdBy String @map("created_by")
   updatedBy String @map("updated_by")
+
+  status FileStatus? @default(unknown)
 
   @@map("files")
   @@index([name, createdAt, createdBy, contentType])

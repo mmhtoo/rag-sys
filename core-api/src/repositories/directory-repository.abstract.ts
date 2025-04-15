@@ -26,6 +26,7 @@ export interface CreateDirectoryInput {
   name: string
   parentDirId?: string
   createdBy: string
+  pathname?: string
 }
 export type CreateDirectoryResult = DirectoryEntity | null
 

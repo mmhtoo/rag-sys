@@ -35,7 +35,17 @@ export class DirectoryServiceImpl implements AbstractDirectoryService {
       if (countWithSameName > 0) {
         throw new Error('Directory with same name already exists!')
       }
-      const res = await this.directoryRepo.createDirectory(input)
+      let pathname = `/${input.name}`
+      if (input.parentDirId) {
+        const parentDir = await this.getDirectoryDetail({
+          id: input.parentDirId,
+        })
+        if (parentDir) pathname = `${parentDir.pathname}/${input.name}`
+      }
+      const res = await this.directoryRepo.createDirectory({
+        ...input,
+        pathname,
+      })
       makeLog(
         'info',
         'finished create directory service with result',
@@ -121,7 +131,17 @@ export class DirectoryServiceImpl implements AbstractDirectoryService {
       if (countWithSameName > 0) {
         throw new Error('Directory with same name already exists!')
       }
-      const res = await this.directoryRepo.updateDirectory(input)
+      let pathname = `/${input.name}`
+      if (input.parentDirId) {
+        const parentDir = await this.getDirectoryDetail({
+          id: input.parentDirId,
+        })
+        if (parentDir) pathname = `${parentDir.pathname}/${input.name}`
+      }
+      const res = await this.directoryRepo.updateDirectory({
+        ...input,
+        pathname,
+      })
       makeLog(
         'info',
         'finished update directory service with result',
