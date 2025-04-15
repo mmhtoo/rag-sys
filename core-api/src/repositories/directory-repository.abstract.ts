@@ -69,7 +69,9 @@ export interface DeleteDirectoryInput {
 export type DeleteDirectoryResult = void
 
 export interface CountDirectoryInput {
-  parentDirId?: string
+  parentDirId?: string | null
+  name?: string
+  excludeId?: string | null
 }
 
 export type CountDirectoryResult = number

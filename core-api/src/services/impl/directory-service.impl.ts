@@ -28,6 +28,13 @@ export class DirectoryServiceImpl implements AbstractDirectoryService {
         'started create directory service with input',
         JSON.stringify(input, null, 2),
       )
+      const countWithSameName = await this.directoryRepo.countDirectory({
+        name: input.name,
+        parentDirId: input.parentDirId || null,
+      })
+      if (countWithSameName > 0) {
+        throw new Error('Directory with same name already exists!')
+      }
       const res = await this.directoryRepo.createDirectory(input)
       makeLog(
         'info',
@@ -106,6 +113,14 @@ export class DirectoryServiceImpl implements AbstractDirectoryService {
         'started update directory service with input',
         JSON.stringify(input, null, 2),
       )
+      const countWithSameName = await this.directoryRepo.countDirectory({
+        name: input.name,
+        parentDirId: input.parentDirId || null,
+        excludeId: input.id,
+      })
+      if (countWithSameName > 0) {
+        throw new Error('Directory with same name already exists!')
+      }
       const res = await this.directoryRepo.updateDirectory(input)
       makeLog(
         'info',

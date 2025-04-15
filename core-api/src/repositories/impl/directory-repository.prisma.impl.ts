@@ -1,4 +1,4 @@
-import type {PrismaClient} from '@prisma/client'
+import {Prisma, type PrismaClient} from '@prisma/client'
 import type {
   AbstractDirectoryRepository,
   CountDirectoryInput,
@@ -33,6 +33,8 @@ export class PrismaDirectoryRepositoryImpl
       const res = await this.prisma.directory.count({
         where: {
           parentDirId: input.parentDirId,
+          name: input.name,
+          id: input.excludeId ? {not: input.excludeId} : undefined,
         },
       })
       makeLog(
@@ -75,6 +77,11 @@ export class PrismaDirectoryRepositoryImpl
       )
       return createRes || null
     } catch (e) {
+      if (e instanceof Prisma.PrismaClientKnownRequestError) {
+        if (e.code === 'P2003') {
+          throw new Error('Invalid parent directory!')
+        }
+      }
       makeLog(
         'error',
         '===== started create directory repo with error ===== \n',
@@ -193,6 +200,11 @@ export class PrismaDirectoryRepositoryImpl
       )
       return res
     } catch (e) {
+      if (e instanceof Prisma.PrismaClientKnownRequestError) {
+        if (e.code === 'P2003') {
+          throw new Error('Invalid parent directory!')
+        }
+      }
       makeLog(
         'error',
         '===== failed update directory repo with error ===== \n',
