@@ -20,7 +20,7 @@ export interface CreateFileInput {
   size: number
   contentType: string
   metadata: string
-  parentDirId?: string
+  parentDirId?: string | null
   createdBy: string
   status?: FileEntity['status']
 }

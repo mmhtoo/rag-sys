@@ -145,7 +145,7 @@ export class FileController {
         id,
         name: reqBody.name,
         metadata: reqBody.metadata,
-        parentDirId: reqBody.parentDirId,
+        parentDirId: reqBody.parentDirId || null,
         file: reqBody.file,
         updatedBy: userId,
       })

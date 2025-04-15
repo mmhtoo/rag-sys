@@ -151,10 +151,10 @@ export class FileServiceImpl implements AbstractFileService {
       })
 
       if (
-        fileDetail?.name == input.name &&
-        input.parentDirId == fileDetail?.parentDirId &&
-        !input.file &&
-        input.metadata === fileDetail?.metadata
+        (fileDetail?.name == input.name &&
+          input.parentDirId == fileDetail?.parentDirId &&
+          !input.file) ||
+        (input.metadata && input.metadata == fileDetail?.metadata)
       ) {
         throw new Error('No changes!')
       }
