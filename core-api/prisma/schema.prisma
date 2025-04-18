@@ -62,7 +62,43 @@ model File {
   updatedBy String @map("updated_by")
 
   status FileStatus? @default(unknown)
+  lastSyncedAt DateTime? @map("last_synced_at")
+
+  synHistories VectorySyncHistoryItem[] @relation("file_has_sync_histories")
 
   @@map("files")
   @@index([name, createdAt, createdBy, contentType])
+}
+
+enum VectorSyncStatus {
+  created
+  in_progress
+  success
+  failed
+}
+
+model VectorSyncHistory {
+  id String @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  status VectorSyncStatus @default(created)
+
+  // need to add actor id here
+  @@index([status])
+  @@map("vector_sync_histories")
+}
+
+model VectorySyncHistoryItem {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  
+  fileId String @map("file_id")
+  file File @relation(name: "file_has_sync_histories", fields: [fileId], references: [id], onDelete: Cascade)
+  
+  status VectorSyncStatus @default(created)
+  metadata Json
+
+  @@index([status, createdAt, updatedAt])
+  @@map("vectory_sync_history_items")
 }
