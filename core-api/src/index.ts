@@ -22,6 +22,7 @@ serve(
     const embedWorker = newEmbeddingWorker()
     const worker = embedWorker.getWorker()
     console.log(`Server is running on http://localhost:${info.port}`)
+
     process.on('SIGINT', () => {
       console.log('Received SIGINT. Shutting down...')
       worker?.close()

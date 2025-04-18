@@ -1,6 +1,10 @@
 import type {Context} from 'hono'
 import type {BlankEnv, BlankInput} from 'hono/types'
-import type {AbstractFileService} from '../../services'
+import {
+  newBullMqQueueServiceImpl,
+  type AbstractFileService,
+  type AbstractQueueService,
+} from '../../services'
 import {newFileServiceImpl} from '../../services/impl/file-service.impl'
 import {baseResponse, dataResponse, errorResponse, makeLog} from '../../helpers'
 import {StatusCodes} from 'http-status-codes'
@@ -12,12 +16,12 @@ import type {
 import type {AbstractBucketService} from '../../services/bucket-service.abstract'
 import {newBucketServiceImpl} from '../../services/impl/bucket-service.impl'
 import {env} from '../../configs'
-import {sign} from 'crypto'
 
 export class FileController {
   constructor(
     private readonly fileService: AbstractFileService,
     private readonly bucketService: AbstractBucketService,
+    private readonly queueService: AbstractQueueService,
   ) {}
 
   async handleUploadFile(c: Context<BlankEnv, '/', BlankInput>) {
@@ -36,6 +40,28 @@ export class FileController {
         createdBy: userId,
         file: reqBody.file,
       })
+      if (!res) {
+        c.status(StatusCodes.INTERNAL_SERVER_ERROR)
+        return c.json(
+          errorResponse('Something went wrong!', 'Internal Server Error!'),
+        )
+      }
+      if (res) {
+        this.queueService.addEmbedingJob({
+          payloads: [
+            {
+              fileId: res?.id,
+              metadata: JSON.parse(reqBody.metadata),
+              bucketName: env.DEFAULT_BUCKET_NAME,
+              resourcePath: res.resourcePath,
+              taskId: res.id,
+              contentType: reqBody.file.type,
+              originalFileName: reqBody.file.name,
+            },
+          ],
+          syncId: 'syncId',
+        })
+      }
       makeLog(
         'info',
         '===== handleUploadFile finished with result ===== \n',
@@ -204,5 +230,9 @@ export class FileController {
 }
 
 export function newFileController() {
-  return new FileController(newFileServiceImpl(), newBucketServiceImpl())
+  return new FileController(
+    newFileServiceImpl(),
+    newBucketServiceImpl(),
+    newBullMqQueueServiceImpl(),
+  )
 }
