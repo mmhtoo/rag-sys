@@ -13,4 +13,8 @@ export const env = {
   CHROMA_URL: process.env.CHROMA_URL || 'http://localhost:8000',
   DEFAULT_VECTOR_COLLECTION_NAME:
     process.env.DEFAULT_VECTOR_COLLECTION_NAME || 'rag_collection',
+  DEFAULT_QUEUE_NAME: process.env.DEFAULT_QUEUE_NAME || 'embed-queue',
+  REDIS_HOST: process.env.REDIS_HOST || 'localhost',
+  REDIS_PORT: Number(process.env.REDIS_PORT) || 6379,
+  REDIS_PASSWORD: process.env.REDIS_PASSWORD || 'password',
 }

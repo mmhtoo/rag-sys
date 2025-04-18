@@ -1,4 +1,5 @@
 import {makeLog} from '../../helpers'
+import {newChromaVectoryRepository} from '../../repositories/impl/vectory-repository.chroma.impl.'
 import type {AbstractVectorRepository} from '../../repositories/vector-repository.abstract'
 import type {
   AbstractVectorService,
@@ -108,4 +109,8 @@ export class VectorServiceImpl implements AbstractVectorService {
       throw e
     }
   }
+}
+
+export function newVectorServiceImpl() {
+  return new VectorServiceImpl(newChromaVectoryRepository())
 }
