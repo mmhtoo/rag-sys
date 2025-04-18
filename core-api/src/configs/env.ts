@@ -10,4 +10,7 @@ export const env = {
   DEFAULT_BUCKET_NAME: process.env.DEFAULT_BUCKET_NAME || 'rag-bucket',
   ALLOWED_FILE_TYPES: process.env.ALLOWED_FILE_TYPES || '',
   MAX_FILE_SIZE: Number(process.env.MAX_FILE_SIZE) || 3145728,
+  CHROMA_URL: process.env.CHROMA_URL || 'http://localhost:8000',
+  DEFAULT_VECTOR_COLLECTION_NAME:
+    process.env.DEFAULT_VECTOR_COLLECTION_NAME || 'rag_collection',
 }
