@@ -14,7 +14,7 @@ import {
   type QueryResult,
 } from '../vector-repository.abstract'
 import {makeLog} from '../../helpers'
-import {ollamaEmbeddingFunction} from '../../libs'
+import {chromaClient, ollamaEmbeddingFunction} from '../../libs'
 import {randomUUID} from 'crypto'
 
 export class ChromaVectorRepositoryImpl implements AbstractVectorRepository {
@@ -129,4 +129,8 @@ export class ChromaVectorRepositoryImpl implements AbstractVectorRepository {
       embeddingFunction: ollamaEmbeddingFunction,
     })
   }
+}
+
+export function newChromaVectoryRepository() {
+  return new ChromaVectorRepositoryImpl(chromaClient)
 }

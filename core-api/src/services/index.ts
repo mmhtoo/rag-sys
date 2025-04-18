@@ -1,2 +1,5 @@
 export * from './file-service.abstract'
 export * from './directory-service.abstract'
+export * from './vector-service.abstract'
+export * from './impl/file-service.impl'
+export * from './impl/directory-service.impl'
