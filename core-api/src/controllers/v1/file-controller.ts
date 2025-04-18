@@ -9,9 +9,16 @@ import type {
   GetFilesWithFilterReqDto,
   UpdateFileReqDto,
 } from '../../validation-schemas/v1/file-schema'
+import type {AbstractBucketService} from '../../services/bucket-service.abstract'
+import {newBucketServiceImpl} from '../../services/impl/bucket-service.impl'
+import {env} from '../../configs'
+import {sign} from 'crypto'
 
 export class FileController {
-  constructor(private readonly fileService: AbstractFileService) {}
+  constructor(
+    private readonly fileService: AbstractFileService,
+    private readonly bucketService: AbstractBucketService,
+  ) {}
 
   async handleUploadFile(c: Context<BlankEnv, '/', BlankInput>) {
     try {
@@ -162,8 +169,40 @@ export class FileController {
       )
     }
   }
+
+  async handleProxyGetFile(c: Context<BlankEnv, '/proxy', BlankInput>) {
+    try {
+      const resource = c.req.query('resource')
+      makeLog('info', '===== handleProxyGetFile with input ===== \n', resource)
+      if (!resource) {
+        c.status(StatusCodes.BAD_REQUEST)
+        return c.json(
+          errorResponse('Resource query is required!', 'Validation failed!'),
+        )
+      }
+      const res = await this.bucketService.getSignedUrl({
+        path: resource,
+        bucketName: env.DEFAULT_BUCKET_NAME,
+      })
+      if (!res || !res.signedUrl) {
+        c.status(StatusCodes.NOT_FOUND)
+        return c.json(errorResponse('File not found!', 'Not Found!'))
+      }
+      c.status(StatusCodes.OK)
+      return c.redirect(res.signedUrl)
+    } catch (e) {
+      makeLog('error', '===== handleProxyGetFile error =====', e)
+      c.status(500)
+      return c.json(
+        errorResponse(
+          'Something went wrong, please try again later!',
+          (e as any)?.message || 'Internal Server Error!',
+        ),
+      )
+    }
+  }
 }
 
 export function newFileController() {
-  return new FileController(newFileServiceImpl())
+  return new FileController(newFileServiceImpl(), newBucketServiceImpl())
 }

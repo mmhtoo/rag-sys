@@ -16,6 +16,7 @@ v1FileRouter.get(
   zValidator('query', getFilesWithFilterSchema, zodCallback),
   (c) => fileController.handleGetFilesWithFilter(c),
 )
+v1FileRouter.get('/proxy', (c) => fileController.handleProxyGetFile(c))
 v1FileRouter.post('/', zValidator('form', createFileSchema, zodCallback), (c) =>
   fileController.handleUploadFile(c),
 )
