@@ -12,6 +12,10 @@ export abstract class AbstractFileRepository {
   abstract countByParentDirId(
     input: CountByParentDirIdInput,
   ): Promise<CountByParentDirIdResult>
+
+  abstract saveVectorMappings(
+    input: SaveVectorMappingsInput,
+  ): SaveVectorMappingsResult
 }
 
 export interface CreateFileInput {
@@ -78,3 +82,12 @@ export interface CountByParentDirIdInput {
   toDate?: Date
 }
 export type CountByParentDirIdResult = number
+
+export interface SaveVectorMappingsInput {
+  data: {
+    fileId: string
+    vectorIds: string[]
+  }
+}
+
+export type SaveVectorMappingsResult = Promise<void>

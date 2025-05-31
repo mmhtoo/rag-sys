@@ -9,6 +9,8 @@ import type {
   GetFileDetailResult,
   GetFileListInput,
   GetFileListResult,
+  SaveVectorMappingsInput,
+  SaveVectorMappingsResult,
   UpdateFileInput,
   UpdateFileResult,
 } from '../repositories'
@@ -27,6 +29,10 @@ export abstract class AbstractFileService {
   abstract countByParentDirId(
     input: CountByParentDirIdInputDto,
   ): Promise<CountByParentDirIdResultDto>
+
+  abstract syncVectorMappings(
+    input: SyncVectorMappingsInputDto,
+  ): SyncVectorMappingsResultDto
 }
 
 export interface CreateFileInputDto extends CreateFileInput {
@@ -50,3 +56,6 @@ export type DeleteFileResultDto = DeleteFileResult
 
 export interface CountByParentDirIdInputDto extends CountByParentDirIdInput {}
 export type CountByParentDirIdResultDto = CountByParentDirIdResult
+
+export interface SyncVectorMappingsInputDto extends SaveVectorMappingsInput {}
+export type SyncVectorMappingsResultDto = SaveVectorMappingsResult

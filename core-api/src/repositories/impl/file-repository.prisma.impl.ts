@@ -11,6 +11,8 @@ import type {
   GetFileDetailResult,
   GetFileListInput,
   GetFileListResult,
+  SaveVectorMappingsInput,
+  SaveVectorMappingsResult,
   UpdateFileInput,
   UpdateFileResult,
 } from '../file-repository.abstract'
@@ -19,6 +21,32 @@ import {prismaClient} from '../../libs'
 
 export class PrismaFileRepositoryImpl implements AbstractFileRepository {
   constructor(private readonly prisma: PrismaClient) {}
+
+  async saveVectorMappings(
+    input: SaveVectorMappingsInput,
+  ): SaveVectorMappingsResult {
+    try {
+      makeLog(
+        'info',
+        '===== saveVectorMappings with input ===== \n',
+        JSON.stringify(input, null, 2),
+      )
+      await this.prisma.vectorMapping.createMany({
+        data: input.data.vectorIds.map((vectorId) => ({
+          fileId: input.data.fileId,
+          vectorId,
+        })),
+      })
+      return
+    } catch (e) {
+      makeLog(
+        'error',
+        '===== saveVectorMappings error =====',
+        JSON.stringify(e, null, 2),
+      )
+      throw e
+    }
+  }
 
   async countByParentDirId(
     input: CountByParentDirIdInput,

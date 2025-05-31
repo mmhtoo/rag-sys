@@ -19,6 +19,8 @@ import type {
   GetFileDetailResultDto,
   GetFileListInputDto,
   GetFileListResultDto,
+  SyncVectorMappingsInputDto,
+  SyncVectorMappingsResultDto,
   UpdateFileInputDto,
   UpdateFileResultDto,
 } from '../file-service.abstract'
@@ -32,6 +34,32 @@ export class FileServiceImpl implements AbstractFileService {
     private readonly directoryService: AbstractDirectoryService,
     private readonly bucketService: AbstractBucketService,
   ) {}
+
+  async syncVectorMappings(
+    input: SyncVectorMappingsInputDto,
+  ): SyncVectorMappingsResultDto {
+    try {
+      makeLog(
+        'info',
+        'started sync vector mappings service with input',
+        JSON.stringify(input, null, 2),
+      )
+      const res = await this.fileRepo.saveVectorMappings(input)
+      makeLog(
+        'info',
+        'finished sync vector mappings service with result',
+        JSON.stringify(res, null, 2),
+      )
+      return res
+    } catch (e) {
+      makeLog(
+        'error',
+        'failed sync vector mappings service with error',
+        JSON.stringify(e, null, 2),
+      )
+      throw e
+    }
+  }
 
   async createFile(input: CreateFileInputDto): Promise<CreateFileResultDto> {
     try {
