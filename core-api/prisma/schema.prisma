@@ -65,6 +65,7 @@ model File {
   lastSyncedAt DateTime? @map("last_synced_at")
 
   synHistories VectorySyncHistoryItem[] @relation("file_has_sync_histories")
+  vectorMappings VectorMapping[] @relation("file_has_vector_mappings")
 
   @@map("files")
   @@index([name, createdAt, createdBy, contentType])
@@ -101,4 +102,14 @@ model VectorySyncHistoryItem {
 
   @@index([status, createdAt, updatedAt])
   @@map("vectory_sync_history_items")
+}
+
+model VectorMapping {
+  id Int @id @default(autoincrement())
+  
+  fileId String @map("file_id")
+  file File @relation(name: "file_has_vector_mappings", fields: [fileId], references: [id], onDelete: Cascade)
+
+  vectorId String @map("vector_id")
+  @@map("vector_mappings")
 }
