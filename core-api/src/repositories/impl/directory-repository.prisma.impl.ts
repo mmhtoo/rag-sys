@@ -140,6 +140,10 @@ export class PrismaDirectoryRepositoryImpl
       const res = await this.prisma.directory.findMany({
         where: {
           parentDirId: input.parentDirId || null,
+          name: {
+            contains: input.name,
+            mode: 'insensitive',
+          },
         },
         skip: pageIndex * pageSize,
         take: pageSize,
