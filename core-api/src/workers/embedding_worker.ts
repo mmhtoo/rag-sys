@@ -47,6 +47,7 @@ async function handleJob(job: Job<EmbeddingWorkerData, any, string>) {
         originalFileName: payload.originalFileName,
         createdAt: new Date().toISOString(),
         contentType: payload.contentType,
+        isArchived: 'false',
       }
       const addDocRes = await vectorService.addDocuments({
         collectionName: env.DEFAULT_VECTOR_COLLECTION_NAME,

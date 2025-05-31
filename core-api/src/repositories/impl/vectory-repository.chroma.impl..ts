@@ -27,7 +27,14 @@ export class ChromaVectorRepositoryImpl implements AbstractVectorRepository {
       const res = await collection.query({
         nResults: input.numberOfResults || 5,
         queryEmbeddings: input.embeddings || [],
-        where: input.metadata || {},
+        where: input.metadata
+          ? {
+              ...input.metadata,
+              isArchived: {
+                $ne: 'false',
+              },
+            }
+          : {},
         include: input.selectFields || [IncludeEnum.Documents],
       })
       makeLog('info', '===== query result ===== \n', res)
