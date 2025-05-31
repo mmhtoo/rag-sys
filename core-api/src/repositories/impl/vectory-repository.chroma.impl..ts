@@ -124,7 +124,7 @@ export class ChromaVectorRepositoryImpl implements AbstractVectorRepository {
   }
 
   private async getCollection(name: string): Promise<Collection> {
-    return await this.chromaClient.getCollection({
+    return await this.chromaClient.getOrCreateCollection({
       name,
       embeddingFunction: ollamaEmbeddingFunction,
     })

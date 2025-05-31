@@ -19,8 +19,7 @@ serve(
     port: Number(env.PORT),
   },
   async (info) => {
-    const embedWorker = newEmbeddingWorker()
-    const worker = embedWorker.getWorker()
+    const worker = newEmbeddingWorker()
     console.log(`Server is running on http://localhost:${info.port}`)
 
     process.on('SIGINT', () => {

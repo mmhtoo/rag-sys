@@ -1,16 +1,16 @@
 services:
-  # postgres:
-  #   container_name: postgres
-  #   image: postgres:latest
-  #   restart: always
-  #   ports:
-  #     - '5433:5432'
-  #   environment:
-  #     POSTGRES_USER: root
-  #     POSTGRES_PASSWORD: root
-  #     POSTGRES_DB: reg-sys
-  #   volumes:
-  #     - postgres_data:/var/lib/postgresql/data
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    restart: always
+    ports:
+      - '5433:5432'
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: reg-sys
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
   chroma:
     container_name: chromadb
     image: chromadb/chroma
