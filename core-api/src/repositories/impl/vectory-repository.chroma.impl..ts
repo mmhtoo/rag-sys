@@ -23,10 +23,11 @@ export class ChromaVectorRepositoryImpl implements AbstractVectorRepository {
   async query(input: QueryInput): Promise<QueryResult> {
     try {
       makeLog('info', '===== query with input ===== \n', input)
+      console.log(input.metadata)
       const collection = await this.getCollection(input.collectionName)
       const res = await collection.query({
         nResults: input.numberOfResults || 5,
-        queryEmbeddings: input.embeddings || [],
+        queryTexts: input.query || '',
         where: input.metadata
           ? {
               ...input.metadata,
@@ -34,10 +35,9 @@ export class ChromaVectorRepositoryImpl implements AbstractVectorRepository {
                 $ne: 'false',
               },
             }
-          : {},
+          : undefined,
         include: input.selectFields || [IncludeEnum.Documents],
       })
-      makeLog('info', '===== query result ===== \n', res)
       return res
     } catch (e) {
       makeLog('error', '===== query error =====', e)

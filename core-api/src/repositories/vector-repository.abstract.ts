@@ -55,8 +55,9 @@ export enum IncludeEnum {
 
 export interface QueryInput {
   collectionName: string
+  query?: string
   metadata?: Record<string, string | number>
-  embeddings?: number[]
+  // embeddings?: number[]
   numberOfResults?: number
   selectFields?: IncludeEnum[]
 }

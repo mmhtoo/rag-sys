@@ -99,9 +99,10 @@ export class VectorServiceImpl implements AbstractVectorService {
       const res = await this.vectoryRepository.query({
         collectionName: input.collectionName,
         metadata: input.metadata,
-        embeddings: input.embeddings,
+        // embeddings: input.embeddings,
         numberOfResults: input.numberOfResults,
         selectFields: input.selectFields,
+        query: input.query,
       })
       return res
     } catch (e) {
