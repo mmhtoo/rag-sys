@@ -18,4 +18,6 @@ export const env = {
   REDIS_PORT: Number(process.env.REDIS_PORT) || 6379,
   REDIS_PASSWORD: process.env.REDIS_PASSWORD || 'password',
   ALLOWED_EXTENSIONS_FOR_SYNC: process.env.ALLOWED_EXTENSIONS_FOR_SYNC || '',
+  SPLITTER_CHUNK_SIZE: Number(process.env.SPLITTER_CHUNK_SIZE) || 500,
+  SPLITTER_CHUNK_OVERLAP: Number(process.env.SPLITTER_CHUNK_OVERLAP) || 100,
 }

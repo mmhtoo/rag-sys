@@ -10,9 +10,11 @@ import {DocxLoader} from '@langchain/community/document_loaders/fs/docx'
 import {TextLoader} from 'langchain/document_loaders/fs/text'
 import type {BaseDocumentLoader} from '@langchain/core/document_loaders/base'
 import {RecursiveCharacterTextSplitter} from '@langchain/textsplitters'
+import {newFileServiceImpl} from '../services'
 
 const bucketService = newBucketServiceImpl()
 const vectorService = newVectorServiceImpl()
+const fileService = newFileServiceImpl()
 
 export function newEmbeddingWorker() {
   return new Worker<EmbeddingWorkerData>(env.DEFAULT_QUEUE_NAME, handleJob, {
@@ -56,8 +58,13 @@ async function handleJob(job: Job<EmbeddingWorkerData, any, string>) {
           metadata: decoratedMetadata,
         })),
       })
-      console.log('For file id ', payload.fileId)
-      console.log('Vector ids ', addDocRes.ids)
+      // sync to vector mappings
+      await fileService.syncVectorMappings({
+        data: {
+          fileId: payload.fileId,
+          vectorIds: addDocRes.ids,
+        },
+      })
       // send message to sync history success
     })
     await Promise.all(embeddingPromises)
@@ -147,8 +154,8 @@ async function loadBlobsContentWithChunks(
   const loadPromises = loaders.map((loader) => loader?.load())
   const loadedDocuments = await Promise.all(loadPromises)
   const textsplitter = new RecursiveCharacterTextSplitter({
-    chunkSize: 1000,
-    chunkOverlap: 200,
+    chunkSize: env.SPLITTER_CHUNK_SIZE,
+    chunkOverlap: env.SPLITTER_CHUNK_OVERLAP,
   })
   const splitDocsPromises = loadedDocuments.map((loadedDoc) =>
     loadedDoc ? textsplitter.splitDocuments(loadedDoc) : null,
